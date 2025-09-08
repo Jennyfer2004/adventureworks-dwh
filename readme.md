@@ -6,9 +6,9 @@
 
 En este proyecto, los estudiantes construirán una solución de **Inteligencia de Negocios (IN)** para la empresa ficticia **AdventureWorks**. Este escenario es una extensión del escenario propuesto por Microsoft en la [base de datos original de AdventureWorks](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms). El proyecto consta de tres tareas principales
 
-- [**Tarea #1 - Diseño y documentación**](#Tarea-1---Diseño y documentación)
-- [**Tarea #2 - Almacén de datos**](#Tarea-2---Almacén de datos)
-- [**Tarea #3 - Panel de control**](#Tarea-3---Panel de control)
+- [**Tarea #1 - Diseño y documentación**](#tarea-1---diseño-y-documentación)
+- [**Tarea #2 - Almacén de datos**](#tarea-2---almacén-de-datos)
+- [**Tarea #3 - Panel de control**](#tarea-3---panel-de-control)
 
 El trabajo debe realizarse en grupos de dos (2) estudiantes.
 
