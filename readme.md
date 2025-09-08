@@ -2,8 +2,6 @@
 
 > Este es el proyecto final del curso de **Inteligencia de Negocios (Business Intelligence)** en la **Facultad de Matemática y Computación de la Universidad de La Habana**.
 
-[TOC]
-
 ## Información General
 
 En este proyecto, los estudiantes construirán una solución de **Inteligencia de Negocios (IN)** para la empresa ficticia **AdventureWorks**. Este escenario es una extensión del escenario propuesto por Microsoft en la [base de datos original de AdventureWorks](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms). El proyecto consta de tres tareas principales
@@ -16,6 +14,8 @@ El trabajo debe realizarse en grupos de dos (2) estudiantes.
 
 - **Fecha de publicación:** 10 de septiembre de 2025
 - **Fecha de entrega:** 15 de diciembre de 2025
+
+La documentación del proyecto puede consultarse [aquí](./aw-docs/doc.md).
 
 ## Descripción del proyecto
 
@@ -130,7 +130,7 @@ Dentro del directorio `aw-docs/architecture` , esta documento debe recoger las e
 - **Resumen:** Una visión general de la arquitectura y su papel en el soporte a los objetivos de IN de la empresa.
 - **Arquitectura conceptual:** Un diagrama conceptual que muestre el flujo de datos desde las fuentes hasta el data warehouse y, finalmente, los usuarios finales.
 - **Componentes de la arquitectura:** Descripción detallada de cada componente de la arquitectura, como procesos ETL, almacenamiento de datos, herramientas analíticas y capas de reportes.
-- **Diseño del almacén de datos empresarial: **Diseño del esquema global del almacén de datos que integra las distintas fuentes de datos. Además de la especificación de convenciones y resolución de conflictos.
+- **Diseño del almacén de datos empresarial**: Diseño del esquema global del almacén de datos que integra las distintas fuentes de datos. Además de la especificación de convenciones y resolución de conflictos.
 - **Diseño del almacén de datos informacional:**  Diseño del esquema multidimensional de la capa de datos derivados del almacén de datos. Además de la especificación de convenciones, jerarquías de atributos, granularidad, etc.
 
 ### Tarea #2 - Almacén de datos
