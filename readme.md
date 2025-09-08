@@ -135,7 +135,7 @@ Dentro del directorio `aw-docs/architecture` , esta documento debe recoger las e
 
 ### Tarea #2 - Almacén de datos
 
-En esta tarea se debe implementar un almacén de datos siguiendo las especificaciones definidas en la sección [Diseño de arquitectura](#Diseño de arquitectura) de la documentación.
+En esta tarea se debe implementar un almacén de datos siguiendo las especificaciones definidas en la sección [Diseño de arquitectura](#diseño-de-arquitectura) de la documentación.
 
 Es importante asegurarse de seguir las convenciones y buenas prácticas aprendidas durante las clases prácticas.
 
@@ -143,6 +143,6 @@ El código debe estar en el directorio `aw-dwh`.
 
 ### Tarea #3 - Panel de control
 
-En esta tarea se deben implementar los paneles de control que soportarán la toma de las deicisiones definidas en la sección [Requerimientos del negocio](#Requerimientos del negocio) de la documentación.
+En esta tarea se deben implementar los paneles de control que soportarán la toma de las deicisiones definidas en la sección [Requerimientos del negocio](#requerimientos-del-negocio) de la documentación.
 
 El código debe estar en el directorio `aw-dashboard`.
