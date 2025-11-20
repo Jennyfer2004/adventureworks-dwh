@@ -22,7 +22,6 @@ snapshot-paths: ["snapshots"]
 target-path: "target" # directory which will store compiled SQL files
 clean-targets: # directories to be removed by `dbt clean`
   - "target"
-  - "dbt_packages"
 
 # In this example config, we tell dbt to build all models in the example/ directory
 # as tables. These settings can be overridden in the individual model files
