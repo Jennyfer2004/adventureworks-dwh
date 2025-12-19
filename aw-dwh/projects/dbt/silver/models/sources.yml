@@ -1939,3 +1939,43 @@ sources:
           - name: modifieddate
             description: "Fecha de última modificación."
             tests: [not_null]
+            
+      - name: review_users
+        description: "Contiene la información de los usuarios registrados en la plataforma que realizan reseñas de productos."
+        columns:
+          - name: id
+            description: "Identificador único del usuario. Permite diferenciar cada cliente dentro del sistema."
+            tests: [not_null, unique]
+          - name: firstname
+            description: "Nombre del usuario. Se utiliza para identificación básica y personalización en reportes."
+            tests: [not_null]
+          - name: lastname
+            description: "Apellido del usuario. Complementa la identificación personal."
+            tests: [not_null]
+          - name: email
+            description: "Correo electrónico del usuario. Permite comunicación y validación de identidad."
+            tests: [not_null, unique]
+          - name: birthdate
+            description: "Fecha de nacimiento. Utilizada para análisis demográficos y segmentación por edad."
+
+      - name: review_reviews
+        description: "Registra las reseñas y calificaciones otorgadas por los usuarios a los productos comprados en una tienda."
+        columns:
+          - name: id
+            description: "Identificador único de la reseña."
+            tests: [not_null, unique]
+          - name: product
+            description: "Nombre del producto evaluado por el usuario."
+            tests: [not_null]
+          - name: rating
+            description: "Calificación numérica otorgada al producto (escala 1–5)."
+            tests: [not_null]
+          - name: date
+            description: "Fecha en la que se realizó la evaluación."
+            tests: [not_null]
+          - name: userid
+            description: "Identifica al usuario que realizó la reseña. Foreign key to User(userid)."
+            tests: [not_null]
+          - name: storeid
+            description: "Indica en qué tienda o canal se adquirió el producto. Foreign key to Store(storeid)."
+            tests: [not_null]
