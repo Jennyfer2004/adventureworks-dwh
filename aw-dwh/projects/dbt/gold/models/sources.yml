@@ -20,3 +20,9 @@ sources:
       - name: salesorderheader
       - name: salesorderdetail
       - name: shipmethod
+      - name: productlistpricehistory
+      - name: productcosthistory
+      - name: store
+      - name: transactionhistory
+      - name: reviews   
+      - name: businessentityaddress
