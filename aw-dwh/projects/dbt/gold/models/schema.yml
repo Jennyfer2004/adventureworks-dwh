@@ -50,7 +50,7 @@ models:
         description: "Fiscal semester"
         tests: [not_null]
 
-  - name: dimproduct
+  - name: dimproduct1
     description: "Product dimension"
     columns:
       - name: productid
@@ -125,6 +125,12 @@ models:
 
       - name: discontinueddate
         description: "Date when product was discontinued"
+     
+      - name: listpricehistory
+        description:  "List price of the product."
+      
+      - name: standardcosthistory
+        description: "Cost of the product at the given time."
 
 
   - name: dimpromotion
@@ -160,7 +166,7 @@ models:
       - name: maxqty
         description: "Maximum quantity allowed."
 
-  - name: dimcustomer
+  - name: dimcustomer1
     description: "List of people who are customers not linked to a store"
     columns:
       - name: customerid
@@ -177,8 +183,8 @@ models:
       - name: title
         description: "Title of the person (Mr, Ms, etc.)"
 
-      - name: firstname
-        description: "First name"
+      # - name: firstname
+      #   description: "First name"
 
       - name: middlename
         description: "Middle name"
@@ -188,6 +194,14 @@ models:
 
       - name: emailpromotion
         description: "Email promotion flag"
+
+      - name: nameunique
+      - name: totalname
+      - name: accountnumber
+      - name: province
+      - name: region
+      - name: avgeragereviews
+
 
   - name: dimgeography
     description: "Address dimension table with city, postal code, state, territory, and country"
@@ -247,7 +261,9 @@ models:
       - name: groupname
         description: "Sales group (renamed from reserved keyword 'group')"
 
-  - name: factonlinesale
+  # - name: factonlinesale
+  - name: factsale
+
     description: "Fact table for internet sales combining order, customer, product, promotion, geography, and dates."
     columns:
 
@@ -344,6 +360,11 @@ models:
       - name: taxrate
       - name: taxamount
       - name: freight
+
+      - name: standardcost
+      - name: costamount
+
+
 
   - name: onlinesalesreport
     description: "Fact table for internet sales combining order, customer, product, promotion, geography, and dates."
