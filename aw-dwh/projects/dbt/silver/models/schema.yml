@@ -1660,3 +1660,29 @@ models:
         description: "Fecha en que el artículo fue añadido al carrito."
         tests:
           - not_null
+          
+  - name: users
+    description: "Contains user information for system access."
+    columns:
+      - name: id
+        description: "Primary key for user records."
+        tests: [not_null, unique]
+
+  - name: reviews
+    description: "Contains product reviews submitted by users."
+    columns:
+      - name: id
+        description: "Primary key for review records."
+        tests: [not_null]
+      - name: product
+        description: "Product being reviewed."
+        tests: [not_null]
+      - name: rating
+        description: "Rating given to the product."
+        tests: [not_null]
+      - name: date
+        description: "Date the review was submitted."
+        tests: [not_null]
+      - name: userid
+        description: "Foreign key to user who submitted the review."
+        tests: [not_null]
