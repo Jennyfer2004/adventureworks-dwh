@@ -8,6 +8,8 @@ from dagster_pyspark import pyspark_resource
 from .resources.csv_io_manager import S3PartitionedCsvIOManager
 from .resources.iceberg_io_manager import IcebergIOManager
 from .resources.mysql_resource import PySparkMySQLResource
+from .resources.http_csv_resorce import PySparkHTTPCSVResource
+from .resources.api_resorce import PySparkAPIResource
 from dagster_dbt import DbtCliResource
 from .project import dbt_silver_project, dbt_gold_project
 from dagster_aws.s3 import S3Resource
@@ -69,6 +71,13 @@ def defs():
                 pyspark=configured_pyspark,
                 catalog="iceberg"
             ),
+            
+            "s3_rsc": S3Resource(
+                aws_access_key_id=dg.EnvVar("AWS_ACCESS_KEY_ID"),
+                aws_secret_access_key=dg.EnvVar("AWS_SECRET_ACCESS_KEY"),
+                endpoint_url=dg.EnvVar("AWS_ENDPOINT"),
+                region_name=dg.EnvVar("AWS_REGION")
+            ),
 
             "aw_core_mysql_rsc": PySparkMySQLResource(
                 pyspark=configured_pyspark,
@@ -84,6 +93,18 @@ def defs():
                 aws_secret_access_key=dg.EnvVar("AWS_SECRET_ACCESS_KEY"),
                 endpoint_url=dg.EnvVar("AWS_ENDPOINT"),
                 region_name=dg.EnvVar("AWS_REGION")
+            ),
+                  
+            "aw_file_rsc": PySparkHTTPCSVResource(
+                pyspark=configured_pyspark,
+                host=dg.EnvVar("AW_HR_FILES_HOST"),
+                port=dg.EnvVar("AW_HR_FILES_PORT")
+            ),
+
+            "aw_review_api_rsc": PySparkAPIResource(
+            pyspark=configured_pyspark,
+            host=dg.EnvVar("AW_REVIEWS_API_HOST"),
+            port=dg.EnvVar("AW_REVIEWS_API_PORT")
             ),
 
             "dbt_silver_rsc": dbt_silver_resource,
