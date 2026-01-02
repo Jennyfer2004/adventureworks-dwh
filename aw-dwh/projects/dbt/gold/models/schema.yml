@@ -1,0 +1,383 @@
+version: 2
+
+models:
+  - name: dimdate
+    description: "Date dimension"
+    columns:
+      - name: dateid
+        description: "Primary key for date records"
+        tests: [not_null, unique]
+      - name: date
+        description: "Date"
+        tests: [not_null, unique]
+      - name: dayofweekname
+        description: "Name of Day of the week"
+        tests: [not_null]
+      - name: dayofweek
+        description: "Day of week"
+        tests: [not_null]
+      - name: dayofmonth
+        description: "Day of the month"
+        tests: [not_null]
+      - name: dayofyear
+        description: "Day of the year"
+        tests: [not_null]
+      - name: weekofyear
+        description: "Week of the year"
+        tests: [not_null]
+      - name: monthofyear
+        description: "Month of the year"
+        tests: [not_null]        
+      - name: monthofyearname
+        description: "Month of the year name"
+        tests: [not_null]
+      - name: calendarquater
+        description: "Calendar quarter"
+        tests: [not_null]
+      - name: calendaryear
+        description: "Calendar year"
+        tests: [not_null]
+      - name: calendarsemester
+        description: "Calendar semester"
+        tests: [not_null]
+      - name: fiscalquater
+        description: "Fiscal quarter"
+        tests: [not_null]
+      - name: fiscalyear
+        description: "Fiscal year"
+        tests: [not_null]
+      - name: fiscalsemester
+        description: "Fiscal semester"
+        tests: [not_null]
+
+  - name: dimproduct1
+    description: "Product dimension"
+    columns:
+      - name: productid
+        description: "Product id"
+        tests: [not_null, unique]
+
+      - name: altproductid
+        description: "Product id"
+        tests: [not_null]
+      
+      - name: name
+        description: "Product name"
+        tests: [not_null]
+
+      - name: productnumber
+        description: "Product number or SKU"
+        tests: [not_null, unique]
+
+      - name: subcategory
+        description: "Product subcategory name"
+
+      - name: category
+        description: "Product category name"
+
+      - name: sizeunitmeasurecode
+        description: "Unit of measure code for size"
+
+      - name: weightunitmeasurecode
+        description: "Unit of measure code for weight"
+
+      - name: color
+        description: "Product color"
+
+      - name: safetystocklevel
+        description: "Safety stock level"
+
+      - name: reorderpoint
+        description: "Reorder point"
+
+      - name: standardcost
+        description: "Standard cost of product"
+
+      - name: listprice
+        description: "List price of product"
+
+      - name: weight
+        description: "Weight of product"
+
+      - name: size
+        description: "Size of product"
+
+      - name: daystomanufacture
+        description: "Days to manufacture the product"
+
+      - name: productline
+        description: "Product line"
+
+      - name: class
+        description: "Product class"
+
+      - name: style
+        description: "Product style"
+
+      - name: productmodel
+        description: "Product model name"
+
+      - name: sellstartdate
+        description: "Start date for product sales"
+
+      - name: sellenddate
+        description: "End date for product sales"
+
+      - name: discontinueddate
+        description: "Date when product was discontinued"
+     
+      - name: listpricehistory
+        description:  "List price of the product."
+      
+      - name: standardcosthistory
+        description: "Cost of the product at the given time."
+
+
+  - name: dimpromotion
+    description: "Promotion dimension"
+    columns:
+      - name: promotionid
+        description: "Promotion dimension id"
+        tests: [not_null, unique]
+      - name: specialofferid
+        description: "Primary key for SpecialOffer records."
+        tests: [not_null]
+      - name: description
+        description: "Offer description."
+        tests: [not_null]
+      - name: discountpct
+        description: "Discount percentage."
+        tests: [not_null]
+      - name: type
+        description: "Type of offer."
+        tests: [not_null]
+      - name: category
+        description: "Offer category."
+        tests: [not_null]
+      - name: startdate
+        description: "Start date of the offer."
+        tests: [not_null]
+      - name: enddate
+        description: "End date of the offer."
+        tests: [not_null]
+      - name: minqty
+        description: "Minimum quantity required."
+        tests: [not_null]
+      - name: maxqty
+        description: "Maximum quantity allowed."
+
+  - name: dimcustomer1
+    description: "List of people who are customers not linked to a store"
+    columns:
+      - name: customerid
+        description: "Customers id"
+        tests: [not_null, unique]
+
+      - name: altcustomerid
+        description: "Unique ID of the person"
+        tests: [not_null, unique]
+
+      - name: persontype
+        description: "Type of person (Individual, Store, etc.)"
+
+      - name: title
+        description: "Title of the person (Mr, Ms, etc.)"
+
+      # - name: firstname
+      #   description: "First name"
+
+      - name: middlename
+        description: "Middle name"
+
+      - name: lastname
+        description: "Last name"
+
+      - name: emailpromotion
+        description: "Email promotion flag"
+
+      - name: nameunique
+      - name: totalname
+      - name: accountnumber
+      - name: province
+      - name: region
+      - name: avgeragereviews
+
+
+  - name: dimgeography
+    description: "Address dimension table with city, postal code, state, territory, and country"
+    columns:
+      - name: geographyid
+        description: "The id"
+        tests: [not_null, unique]
+
+      - name: city
+        description: "City name"
+        tests: [not_null]
+
+      - name: postalcode
+        description: "Postal code"
+
+      - name: stateprovincename
+        description: "Name of the state or province"
+        tests: [not_null]
+
+      - name: stateprovincecode
+        description: "State or province code"
+
+      - name: territory
+        description: "Sales territory name"
+
+      - name: countryname
+        description: "Country name"
+
+      - name: countrycode
+        description: "Country code"
+
+      - name: groupname
+        description: "Sales group (renamed from reserved keyword 'group')"
+
+
+  - name: dimsalesterritory
+    description: "Address dimension table with city, postal code, state, territory, and country"
+    columns:
+      - name: salesterritoryid
+        description: "The id"
+        tests: [not_null, unique]
+
+      - name: altsalesterritoryid
+        description: "The id"
+        tests: [not_null]
+
+
+      - name: territory
+        description: "Sales territory name"
+
+      - name: countryname
+        description: "Country name"
+
+      - name: countrycode
+        description: "Country code"
+
+      - name: groupname
+        description: "Sales group (renamed from reserved keyword 'group')"
+
+  # - name: factonlinesale
+  - name: factsale
+
+    description: "Fact table for internet sales combining order, customer, product, promotion, geography, and dates."
+    columns:
+
+      - name: onlinesaleid
+        tests: [not_null, unique]
+    
+
+      - name: salesordernumber
+        tests:
+          - not_null
+
+      - name: salesorderdetailid
+        tests:
+          - not_null
+
+      - name: orderdateid
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dimdate')
+                field: dateid
+
+      - name: duedateid
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dimdate')
+                field: dateid
+
+      - name: shipdateid
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dimdate')
+                field: dateid
+
+      - name: customerid
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dimcustomer')
+                field: customerid
+
+      - name: salesterritoryid
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dimsalesterritory')
+                field: salesterritoryid
+
+      - name: shiptogeographyid
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dimgeography')
+                field: geographyid
+
+      - name: billtogeographyid
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dimgeography')
+                field: geographyid
+
+      - name: productid
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dimproduct')
+                field: productid
+
+      - name: promotionid
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dimpromotion')
+                field: promotionid
+
+      - name: orderqty
+      - name: standardcost
+      - name: costamount
+      - name: unitprice
+      - name: unitpricediscountpct
+      - name: unitpricediscount
+      - name: priceamount
+      - name: discountamount
+      - name: salesamount
+      - name: taxrate
+      - name: taxamount
+      - name: freight
+
+      - name: standardcost
+      - name: costamount
+
+
+
+  - name: onlinesalesreport
+    description: "Fact table for internet sales combining order, customer, product, promotion, geography, and dates."
+    columns:
+      - name: date
+      - name: category
+      - name: subcategory
+      - name: countrycode
+      - name: countryname
+      - name: groupname
+      - name: totalunits
+      - name: totalcost
+      - name: totalsales
+      - name: totaltaxes
+      - name: totalfreight
+      - name: totalprofit

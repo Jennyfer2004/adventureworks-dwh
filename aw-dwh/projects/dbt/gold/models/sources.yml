@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: silver
+    database: warehouse
+    schema: silver
+    tables:
+      - name: product
+      - name: productsubcategory
+      - name: productcategory
+      - name: productmodel
+      - name: specialoffer
+      - name: customer
+      - name: person
+      - name: salesterritory
+      - name: address
+      - name: stateprovince
+      - name: countryregion
+      - name: salesreason
+      - name: salesorderheader
+      - name: salesorderdetail
+      - name: shipmethod
+      - name: productlistpricehistory
+      - name: productcosthistory
+      - name: store
+      - name: transactionhistory
+      - name: reviews   
+      - name: businessentityaddress

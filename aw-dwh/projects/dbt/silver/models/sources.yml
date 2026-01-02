@@ -1,0 +1,1981 @@
+version: 2
+
+sources:
+  - name: bronze
+    schema: bronze
+    tables:
+      - name: core_addresstype
+        description: "List of address type classifications."
+        columns:
+          - name: addresstypeid
+            description: "Primary key for AddressType records."
+            tests: [not_null, unique]
+          - name: name
+            description: "Name of the address type."
+            tests: [not_null]
+          - name: rowguid
+            description: "Unique identifier for the address type."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Date and time the record was last modified."
+            tests: [not_null]
+
+      - name: core_businessentity
+        description: "Master table for all entities such as customers, vendors, or employees."
+        columns:
+          - name: businessentityid
+            description: "Primary key for BusinessEntity records."
+            tests: [not_null, unique]
+          - name: rowguid
+            description: "Unique identifier for the entity."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Date and time the record was last modified."
+            tests: [not_null]
+
+      - name: core_contacttype
+        description: "Types of contact roles within an organization."
+        columns:
+          - name: contacttypeid
+            description: "Primary key for ContactType records."
+            tests: [not_null, unique]
+          - name: name
+            description: "Name of the contact type."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_countryregion
+        description: "List of countries or regions."
+        columns:
+          - name: countryregioncode
+            description: "Primary key, code for the country or region."
+            tests: [unique]
+          - name: name
+            description: "Country or region name."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Date the record was last modified."
+            tests: [not_null]
+
+      - name: core_creditcard
+        description: "Customer credit card information."
+        columns:
+          - name: creditcardid
+            description: "Primary key for CreditCard records."
+            tests: [not_null, unique]
+          - name: cardtype
+            description: "Type of credit card (e.g., Visa, MasterCard)."
+            tests: [not_null]
+          - name: cardnumber
+            description: "Credit card number."
+            tests: [not_null]
+          - name: expmonth
+            description: "Card expiration month."
+            tests: [not_null]
+          - name: expyear
+            description: "Card expiration year."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_culture
+        description: "Language and culture identifiers."
+        columns:
+          - name: cultureid
+            description: "Primary key for Culture records."
+            tests: [unique]
+          - name: name
+            description: "Culture name."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_currency
+        description: "List of currencies used in the system."
+        columns:
+          - name: currencycode
+            description: "Primary key, currency code."
+            tests: [not_null, unique]
+          - name: name
+            description: "Currency name."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_illustration
+        description: "Illustrations used in product models."
+        columns:
+          - name: illustrationid
+            description: "Primary key for Illustration records."
+            tests: [not_null, unique]
+          - name: diagram
+            description: "Diagram content."
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_location
+        description: "Manufacturing or storage locations."
+        columns:
+          - name: locationid
+            description: "Primary key for Location records."
+            tests: [not_null, unique]
+          - name: name
+            description: "Location name."
+            tests: [not_null]
+          - name: costrate
+            description: "Standard hourly cost rate."
+            tests: [not_null]
+          - name: availability
+            description: "Availability percentage of the location."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_phonenumbertype
+        description: "Types of phone numbers, such as home, work, or mobile."
+        columns:
+          - name: phonenumbertypeid
+            description: "Primary key for PhoneNumberType records."
+            tests: [not_null, unique]
+          - name: name
+            description: "Type name."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_productcategory
+        description: "Product category hierarchy."
+        columns:
+          - name: productcategoryid
+            description: "Primary key for ProductCategory records."
+            tests: [not_null, unique]
+          - name: name
+            description: "Category name."
+            tests: [not_null]
+          - name: rowguid
+            description: "Unique identifier for the category."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_productdescription
+        description: "Product descriptions in various languages."
+        columns:
+          - name: productdescriptionid
+            description: "Primary key for ProductDescription records."
+            tests: [not_null, unique]
+          - name: description
+            description: "Description text."
+            tests: [not_null]
+          - name: rowguid
+            description: "Unique identifier for the description."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_productmodel
+        description: "Product model definitions and associated metadata."
+        columns:
+          - name: productmodelid
+            description: "Primary key for ProductModel records."
+            tests: [not_null, unique]
+          - name: name
+            description: "Model name."
+            tests: [not_null]
+          - name: catalogdescription
+            description: "XML catalog description."
+          - name: instructions
+            description: "Model instructions."
+          - name: rowguid
+            description: "Unique identifier for the product model."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_productphoto
+        description: "Photographs of products."
+        columns:
+          - name: productphotoid
+            description: "Primary key for ProductPhoto records."
+            tests: [not_null, unique]
+          - name: thumbnailphoto
+            description: "Thumbnail image."
+          - name: thumbnailphotofilename
+            description: "Thumbnail file name."
+          - name: largephoto
+            description: "Full-size image."
+          - name: largephotofilename
+            description: "Full-size file name."
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_salesreason
+        description: "Reasons for customer sales."
+        columns:
+          - name: salesreasonid
+            description: "Primary key for SalesReason records."
+            tests: [not_null, unique]
+          - name: name
+            description: "Reason name."
+            tests: [not_null]
+          - name: reasontype
+            description: "Category of the sales reason."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_scrapreason
+        description: "Reasons for scrapping manufacturing parts."
+        columns:
+          - name: scrapreasonid
+            description: "Primary key for ScrapReason records."
+            tests: [not_null, unique]
+          - name: name
+            description: "Scrap reason name."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_shipmethod
+        description: "Shipping method options and rates."
+        columns:
+          - name: shipmethodid
+            description: "Primary key for ShipMethod records."
+            tests: [not_null, unique]
+          - name: name
+            description: "Shipping method name."
+            tests: [not_null]
+          - name: shipbase
+            description: "Base shipping cost."
+            tests: [not_null]
+          - name: shiprate
+            description: "Shipping rate per item."
+            tests: [not_null]
+          - name: rowguid
+            description: "Unique identifier for the shipping method."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_specialoffer
+        description: "Discount offers and promotions."
+        columns:
+          - name: specialofferid
+            description: "Primary key for SpecialOffer records."
+            tests: [not_null, unique]
+          - name: description
+            description: "Offer description."
+            tests: [not_null]
+          - name: discountpct
+            description: "Discount percentage."
+            tests: [not_null]
+          - name: type
+            description: "Type of offer."
+            tests: [not_null]
+          - name: category
+            description: "Offer category."
+            tests: [not_null]
+          - name: startdate
+            description: "Start date of the offer."
+            tests: [not_null]
+          - name: enddate
+            description: "End date of the offer."
+            tests: [not_null]
+          - name: minqty
+            description: "Minimum quantity required."
+            tests: [not_null]
+          - name: maxqty
+            description: "Maximum quantity allowed."
+          - name: rowguid
+            description: "Unique identifier for the offer."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_transactionhistoryarchive
+        description: "Archived transaction records for products."
+        columns:
+          - name: transactionid
+            description: "Primary key for TransactionHistoryArchive records."
+            tests: [not_null, unique]
+          - name: productid
+            description: "Product identifier."
+            tests: [not_null]
+          - name: referenceorderid
+            description: "Reference order identifier."
+            tests: [not_null]
+          - name: referenceorderlineid
+            description: "Reference order line identifier."
+            tests: [not_null]
+          - name: transactiondate
+            description: "Transaction date."
+            tests: [not_null]
+          - name: transactiontype
+            description: "Transaction type: W=WorkOrder, S=SalesOrder, P=PurchaseOrder."
+            tests: [not_null]
+          - name: quantity
+            description: "Quantity involved in the transaction."
+            tests: [not_null]
+          - name: actualcost
+            description: "Actual cost per transaction."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_unitmeasure
+        description: "Standard unit of measurement for products."
+        columns:
+          - name: unitmeasurecode
+            description: "Primary key for UnitMeasure records."
+            tests: [not_null, unique]
+          - name: name
+            description: "Unit name."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_countryregioncurrency
+        description: "Mapping between countries/regions and currencies."
+        columns:
+          - name: countryregioncode
+            description: "Foreign key to CountryRegion."
+            tests:
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_countryregion')
+                    field: countryregioncode
+          - name: currencycode
+            description: "Foreign key to Currency."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_currency')
+                    field: currencycode
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_currencyrate
+        description: "Exchange rates between currency pairs."
+        columns:
+          - name: currencyrateid
+            description: "Primary key for CurrencyRate records."
+            tests: [not_null, unique]
+          - name: currencyratedate
+            description: "Date of the currency rate."
+            tests: [not_null]
+          - name: fromcurrencycode
+            description: "Foreign key to the source currency."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_currency')
+                    field: currencycode
+          - name: tocurrencycode
+            description: "Foreign key to the destination currency."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_currency')
+                    field: currencycode
+          - name: averagerate
+            description: "Average exchange rate."
+            tests: [not_null]
+          - name: endofdayrate
+            description: "End of day exchange rate."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_person
+        description: "Individual contact information for a business entity."
+        columns:
+          - name: businessentityid
+            description: "Foreign key to BusinessEntity."
+            tests:
+              - not_null
+              - unique
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_businessentity')
+                    field: businessentityid
+          - name: persontype
+            description: "Type of person, such as SC, VC, IN, etc."
+            tests: [not_null]
+          - name: namestyle
+            description: "Indicates if the name is in a Western or Eastern style."
+            tests: [not_null]
+          - name: title
+            description: "Title of the person (Mr., Ms., etc.)."
+          - name: firstname
+            description: "First name of the person."
+            tests: [not_null]
+          - name: middlename
+            description: "Middle name of the person."
+          - name: lastname
+            description: "Last name of the person."
+            tests: [not_null]
+          - name: suffix
+            description: "Suffix for the name."
+          - name: emailpromotion
+            description: "Email promotion preference code."
+            tests: [not_null]
+          - name: additionalcontactinfo
+            description: "Additional contact details."
+          - name: demographics
+            description: "Demographic information."
+          - name: rowguid
+            description: "Unique identifier for the person record."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_personcreditcard
+        description: "Mapping of individuals to their credit cards."
+        columns:
+          - name: businessentityid
+            description: "Foreign key to Person."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_person')
+                    field: businessentityid
+          - name: creditcardid
+            description: "Foreign key to CreditCard."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_creditcard')
+                    field: creditcardid
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_personphone
+        description: "Phone numbers associated with individuals."
+        columns:
+          - name: businessentityid
+            description: "Foreign key to Person."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_person')
+                    field: businessentityid
+          - name: phonenumber
+            description: "Telephone number."
+            tests: [not_null]
+          - name: phonenumbertypeid
+            description: "Foreign key to PhoneNumberType."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_phonenumbertype')
+                    field: phonenumbertypeid
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_productmodelillustration
+        description: "Mapping between product models and illustrations."
+        columns:
+          - name: productmodelid
+            description: "Foreign key to ProductModel."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_productmodel')
+                    field: productmodelid
+          - name: illustrationid
+            description: "Foreign key to Illustration."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_illustration')
+                    field: illustrationid
+          - name: modifieddate
+            description: "Last modification date."
+            tests: [not_null]
+
+      - name: core_productmodelproductdescriptionculture
+        description: "Associative table linking product models, product descriptions, and cultures."
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - productmodelid
+                  - productdescriptionid
+                  - cultureid
+        columns:
+          - name: productmodelid
+            description: "Identifier of the product model."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_productmodel')
+                    field: productmodelid
+          - name: productdescriptionid
+            description: "Identifier of the product description."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_productdescription')
+                    field: productdescriptionid
+          - name: cultureid
+            description: "Identifier of the culture."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_culture')
+                    field: cultureid
+          - name: modifieddate
+            description: "Date when the record was last modified."
+            tests:
+              - not_null
+
+      - name: core_productsubcategory
+        description: "Subcategories of products within a product category."
+        columns:
+          - name: productsubcategoryid
+            description: "Primary key for ProductSubcategory."
+            tests:
+              - not_null
+              - unique
+          - name: productcategoryid
+            description: "Identifier of the parent product category."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_productcategory')
+                    field: productcategoryid
+          - name: name
+            description: "Name of the product subcategory."
+            tests:
+              - not_null
+          - name: rowguid
+            description: "Unique identifier for the row."
+            tests:
+              - not_null
+              - unique
+          - name: modifieddate
+            description: "Date when the record was last modified."
+            tests:
+              - not_null
+
+      - name: core_salesterritory
+        description: "Sales territories for the organization."
+        columns:
+          - name: territoryid
+            description: "Primary key for SalesTerritory."
+            tests:
+              - not_null
+              - unique
+          - name: name
+            description: "Name of the sales territory."
+            tests:
+              - not_null
+          - name: countryregioncode
+            description: "Code of the associated country or region."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_countryregion')
+                    field: countryregioncode
+          - name: group
+            description: "Group name for the territory."
+            quote: true
+            tests:
+              - not_null
+          - name: salesytd
+            description: "Year-to-date sales for the territory."
+            tests:
+              - not_null
+          - name: saleslastyear
+            description: "Sales in the previous year."
+            tests:
+              - not_null
+          - name: costytd
+            description: "Year-to-date cost for the territory."
+            tests:
+              - not_null
+          - name: costlastyear
+            description: "Cost in the previous year."
+            tests:
+              - not_null
+          - name: rowguid
+            description: "Unique identifier for the row."
+            tests:
+              - not_null
+              - unique
+          - name: modifieddate
+            description: "Date when the record was last modified."
+            tests:
+              - not_null
+
+      - name: core_stateprovince
+        description: "State or province within a country/region."
+        columns:
+          - name: stateprovinceid
+            description: "Primary key for StateProvince."
+            tests:
+              - not_null
+              - unique
+          - name: stateprovincecode
+            description: "Code of the state or province."
+            tests:
+              - not_null
+          - name: countryregioncode
+            description: "Code of the associated country or region."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_countryregion')
+                    field: countryregioncode
+          - name: isonlystateprovinceflag
+            description: "Flag indicating if this is the only state/province."
+            tests:
+              - not_null
+          - name: name
+            description: "Name of the state or province."
+            tests:
+              - not_null
+          - name: territoryid
+            description: "Identifier of the associated sales territory."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_salesterritory')
+                    field: territoryid
+          - name: rowguid
+            description: "Unique identifier for the row."
+            tests:
+              - not_null
+              - unique
+          - name: modifieddate
+            description: "Date when the record was last modified."
+            tests:
+              - not_null
+
+      - name: core_vendor
+        description: "Vendors supplying products or services."
+        columns:
+          - name: businessentityid
+            description: "Primary key referencing BusinessEntity."
+            tests:
+              - not_null
+              - unique
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_businessentity')
+                    field: businessentityid
+          - name: accountnumber
+            description: "Vendor account number."
+            tests:
+              - not_null
+          - name: name
+            description: "Name of the vendor."
+            tests:
+              - not_null
+          - name: creditrating
+            description: "Credit rating of the vendor."
+            tests:
+              - not_null
+          - name: preferredvendorstatus
+            description: "Flag indicating preferred vendor status."
+            tests:
+              - not_null
+          - name: activeflag
+            description: "Flag indicating if the vendor is active."
+            tests:
+              - not_null
+          - name: purchasingwebserviceurl
+            description: "URL of the vendor's purchasing web service."
+          - name: modifieddate
+            description: "Date when the record was last modified."
+            tests:
+              - not_null
+
+      - name: core_address
+        description: "Addresses used by business entities."
+        columns:
+          - name: addressid
+            description: "Primary key for Address."
+            tests:
+              - not_null
+              - unique
+          - name: addressline1
+            description: "First line of the address."
+            tests:
+              - not_null
+          - name: addressline2
+            description: "Second line of the address."
+          - name: city
+            description: "City of the address."
+          - name: stateprovinceid
+            description: "Identifier of the state or province."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_stateprovince')
+                    field: stateprovinceid
+          - name: postalcode
+            description: "Postal code of the address."
+            tests:
+              - not_null
+          - name: spatiallocation
+            description: "Spatial location data."
+          - name: rowguid
+            description: "Unique identifier for the row."
+            tests:
+              - not_null
+              - unique
+          - name: modifieddate
+            description: "Date when the record was last modified."
+            tests:
+              - not_null
+
+      - name: core_businessentityaddress
+        description: "Associates business entities with addresses and address types."
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - businessentityid
+                  - addressid
+                  - addresstypeid
+        columns:
+          - name: businessentityid
+            description: "Identifier of the business entity."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_businessentity')
+                    field: businessentityid
+          - name: addressid
+            description: "Identifier of the address."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_address')
+                    field: addressid
+          - name: addresstypeid
+            description: "Identifier of the address type."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_addresstype')
+                    field: addresstypeid
+          - name: rowguid
+            description: "Unique identifier for the row."
+            tests:
+              - not_null
+              - unique
+          - name: modifieddate
+            description: "Date when the record was last modified."
+            tests:
+              - not_null
+
+      - name: core_productcosthistory
+        description: "Historical cost records for each product."
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - productid
+                  - startdate
+        columns:
+          - name: productid
+            description: "Reference to the product."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_product')
+                    field: productid
+          - name: startdate
+            description: "Start date of the cost record."
+            tests:
+              - not_null
+          - name: enddate
+            description: "End date of the cost record."
+          - name: standardcost
+            description: "Cost of the product at the given time."
+            tests:
+              - not_null
+          - name: modifieddate
+            description: "Record last modification date."
+            tests:
+              - not_null
+
+      - name: core_productinventory
+        description: "Current inventory levels of products at various locations."
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - productid
+                  - locationid
+        columns:
+          - name: productid
+            description: "Reference to the product."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_product')
+                    field: productid
+          - name: locationid
+            description: "Reference to the inventory location."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_location')
+                    field: locationid
+          - name: shelf
+            description: "Shelf identifier within the location."
+          - name: bin
+            description: "Bin number within the shelf."
+            tests:
+              - not_null
+          - name: quantity
+            description: "Quantity of product available at the location."
+            tests:
+              - not_null
+          - name: rowguid
+            description: "Unique row identifier."
+            tests:
+              - not_null
+              - unique
+          - name: modifieddate
+            description: "Record last modification date."
+            tests:
+              - not_null
+
+      - name: core_productlistpricehistory
+        description: "Historical list price records for products."
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - productid
+                  - startdate
+        columns:
+          - name: productid
+            description: "Reference to the product."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_product')
+                    field: productid
+          - name: startdate
+            description: "Start date of the list price."
+            tests:
+              - not_null
+          - name: enddate
+            description: "End date of the list price period."
+          - name: listprice
+            description: "List price of the product."
+            tests:
+              - not_null
+          - name: modifieddate
+            description: "Record last modification date."
+            tests:
+              - not_null
+
+      - name: core_productproductphoto
+        description: "Mapping of products to their photos."
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - productid
+                  - productphotoid
+        columns:
+          - name: productid
+            description: "Reference to the product."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_product')
+                    field: productid
+          - name: productphotoid
+            description: "Reference to the product photo."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_productphoto')
+                    field: productphotoid
+          - name: primary
+            description: "Indicates if this photo is primary for the product."
+            tests:
+              - not_null
+          - name: modifieddate
+            description: "Record last modification date."
+            tests:
+              - not_null
+
+      - name: core_productvendor
+        description: "Vendor information for products including pricing and lead times."
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - productid
+                  - businessentityid
+        columns:
+          - name: productid
+            description: "Reference to the product."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_product')
+                    field: productid
+          - name: businessentityid
+            description: "Reference to the vendor."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_vendor')
+                    field: businessentityid
+          - name: averageleadtime
+            description: "Average lead time for the vendor to deliver the product."
+            tests:
+              - not_null
+          - name: standardprice
+            description: "Standard price charged by the vendor."
+            tests:
+              - not_null
+          - name: lastreceiptcost
+            description: "Cost of the last received product."
+          - name: lastreceiptdate
+            description: "Date when the last product was received."
+          - name: minorderqty
+            description: "Minimum quantity that can be ordered."
+            tests:
+              - not_null
+          - name: maxorderqty
+            description: "Maximum quantity that can be ordered."
+            tests:
+              - not_null
+          - name: onorderqty
+            description: "Quantity currently on order."
+          - name: unitmeasurecode
+            description: "Unit of measure code for the product."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_unitmeasure')
+                    field: unitmeasurecode
+          - name: modifieddate
+            description: "Record last modification date."
+            tests:
+              - not_null
+
+      - name: core_salesorderheader
+        description: "Stores general information about customer sales orders."
+        columns:
+          - name: salesorderid
+            description: "Primary key for each sales order."
+            tests:
+              - not_null
+              - unique
+          - name: revisionnumber
+            description: "Incremental number tracking order revisions."
+            tests:
+              - not_null
+          - name: orderdate
+            description: "Date when the order was placed."
+            tests:
+              - not_null
+          - name: duedate
+            description: "Date when the order is due to be shipped."
+            tests:
+              - not_null
+          - name: shipdate
+            description: "Date when the order was shipped."
+          - name: status
+            description: "Current status of the order."
+            tests:
+              - not_null
+          - name: onlineorderflag
+            description: "Indicates if the order was placed online."
+            tests:
+              - not_null
+          - name: salesordernumber
+            description: "Unique sales order number for reference."
+            tests:
+              - not_null
+          - name: purchaseordernumber
+            description: "Customer's purchase order number."
+          - name: accountnumber
+            description: "Customer’s account number."
+          - name: customerid
+            description: "Reference to the customer placing the order."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_customer')
+                    field: customerid
+          - name: salespersonid
+            description: "Reference to the salesperson responsible for the order."
+            tests:
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_salesperson')
+                    field: businessentityid
+          - name: territoryid
+            description: "Reference to the sales territory."
+            tests:
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_salesterritory')
+                    field: territoryid
+          - name: billtoaddressid
+            description: "Billing address reference."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_address')
+                    field: addressid
+          - name: shiptoaddressid
+            description: "Shipping address reference."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_address')
+                    field: addressid
+          - name: shipmethodid
+            description: "Reference to the method used to ship the order."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_shipmethod')
+                    field: shipmethodid
+          - name: creditcardid
+            description: "Reference to the credit card used for the order."
+            tests:
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_creditcard')
+                    field: creditcardid
+          - name: creditcardapprovalcode
+            description: "Approval code from the credit card company."
+          - name: currencyrateid
+            description: "Reference to the applicable currency rate."
+            tests:
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_currencyrate')
+                    field: currencyrateid
+          - name: subtotal
+            description: "Total before taxes and freight."
+            tests:
+              - not_null
+          - name: taxamt
+            description: "Tax amount applied to the order."
+            tests:
+              - not_null
+          - name: freight
+            description: "Freight cost for shipping the order."
+            tests:
+              - not_null
+          - name: totaldue
+            description: "Computed total amount due."
+          - name: comment
+            description: "Optional order comments or notes."
+          - name: rowguid
+            description: "Unique row identifier."
+            tests:
+              - not_null
+              - unique
+          - name: modifieddate
+            description: "Date and time when the record was last modified."
+            tests:
+              - not_null
+
+      - name: core_salesorderheadersalesreason
+        description: "Associative table linking sales orders to their sales reasons."
+        columns:
+          - name: salesorderid
+            description: "Reference to the sales order."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_salesorderheader')
+                    field: salesorderid
+          - name: salesreasonid
+            description: "Reference to the reason associated with the sales order."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_salesreason')
+                    field: salesreasonid
+          - name: modifieddate
+            description: "Date and time when the record was last modified."
+            tests:
+              - not_null
+
+      - name: core_salesorderdetail
+        description: "Contiene las líneas de items asociadas a cada orden de venta."
+        columns:
+          - name: salesorderid
+            description: "Referencia a la cabecera de la orden de venta."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_salesorderheader')
+                    field: salesorderid
+          - name: salesorderdetailid
+            description: "Identificador de la línea de detalle dentro de una orden."
+            tests:
+              - not_null
+          - name: carriertrackingnumber
+            description: "Número de seguimiento del envío."
+          - name: orderqty
+            description: "Cantidad de productos ordenados."
+            tests:
+              - not_null
+          - name: productid
+            description: "Referencia al producto."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_product')
+                    field: productid
+          - name: specialofferid
+            description: "Referencia a la oferta especial."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_specialoffer')
+                    field: specialofferid
+          - name: unitprice
+            description: "Precio unitario del producto."
+            tests:
+              - not_null
+          - name: unitpricediscount
+            description: "Descuento aplicado al precio unitario."
+            tests:
+              - not_null
+          - name: linetotal
+            description: "Total calculado para la línea de producto."
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests:
+              - not_null
+              - unique
+          - name: modifieddate
+            description: "Fecha de la última modificación."
+            tests:
+              - not_null
+      # --- TABLAS FALTANTES ---
+
+      - name: core_product
+        description: "Productos vendidos o utilizados en la fabricación de otros productos."
+        columns:
+          - name: productid
+            description: "Clave primaria para los registros de Product."
+            tests: [not_null, unique]
+          - name: name
+            description: "Nombre del producto."
+            tests: [not_null]
+          - name: productnumber
+            description: "Número de producto único."
+            tests: [not_null, unique]
+          - name: makeflag
+            description: "Flag que indica si el producto se fabrica internamente."
+            tests: [not_null]
+          - name: finishedgoodsflag
+            description: "Flag que indica si el producto es un bien final."
+            tests: [not_null]
+          - name: color
+            description: "Color del producto."
+          - name: safetystocklevel
+            description: "Nivel mínimo de stock de seguridad."
+            tests: [not_null]
+          - name: reorderpoint
+            description: "Punto de reorden para el producto."
+            tests: [not_null]
+          - name: standardcost
+            description: "Costo estándar del producto."
+            tests: [not_null]
+          - name: listprice
+            description: "Precio de lista del producto."
+            tests: [not_null]
+          - name: size
+            description: "Tamaño del producto."
+          - name: sizeunitmeasurecode
+            description: "Código de la unidad de medida para el tamaño."
+          - name: weightunitmeasurecode
+            description: "Código de la unidad de medida para el peso."
+          - name: weight
+            description: "Peso del producto."
+          - name: daystomanufacture
+            description: "Días requeridos para fabricar el producto."
+            tests: [not_null]
+          - name: productline
+            description: "Línea de producto."
+          - name: class
+            description: "Clase del producto."
+          - name: style
+            description: "Estilo del producto."
+          - name: productsubcategoryid
+            description: "ID de la subcategoría del producto."
+            tests:
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_productsubcategory')
+                    field: productsubcategoryid
+          - name: productmodelid
+            description: "ID del modelo del producto."
+            tests:
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_productmodel')
+                    field: productmodelid
+          - name: sellstartdate
+            description: "Fecha de inicio de venta del producto."
+            tests: [not_null]
+          - name: sellenddate
+            description: "Fecha de fin de venta del producto."
+          - name: discontinueddate
+            description: "Fecha de discontinuación del producto."
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_employee
+        description: "Información de los empleados."
+        columns:
+          - name: businessentityid
+            description: "Clave primaria, referencia a BusinessEntity."
+            tests:
+              - not_null
+              - unique
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_businessentity')
+                    field: businessentityid
+          - name: nationalidnumber
+            description: "Número de identificación nacional del empleado."
+            tests: [not_null, unique]
+          - name: loginid
+            description: "Login de red del empleado."
+            tests: [not_null, unique]
+          - name: organizationnode
+            description: "Nodo organizacional en la jerarquía."
+          - name: organizationlevel
+            description: "Nivel organizacional."
+          - name: jobtitle
+            description: "Título del puesto del empleado."
+            tests: [not_null]
+          - name: birthdate
+            description: "Fecha de nacimiento."
+            tests: [not_null]
+          - name: maritalstatus
+            description: "Estado civil."
+            tests: [not_null]
+          - name: gender
+            description: "Género."
+            tests: [not_null]
+          - name: hiredate
+            description: "Fecha de contratación."
+            tests: [not_null]
+          - name: salariedflag
+            description: "Indica si el empleado es asalariado."
+            tests: [not_null]
+          - name: vacationhours
+            description: "Horas de vacaciones."
+            tests: [not_null]
+          - name: sickleavehours
+            description: "Horas de baja por enfermedad."
+            tests: [not_null]
+          - name: currentflag
+            description: "Indica si el empleado está actualmente activo."
+            tests: [not_null]
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_customer
+        description: "Clientes de la empresa."
+        columns:
+          - name: customerid
+            description: "Clave primaria para los clientes."
+            tests: [not_null, unique]
+          - name: personid
+            description: "Referencia a la tabla Person si el cliente es una persona."
+            tests:
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_person')
+                    field: businessentityid
+          - name: storeid
+            description: "Referencia a la tabla Store si el cliente es una tienda."
+          - name: territoryid
+            description: "Territorio al que pertenece el cliente."
+            tests:
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_salesterritory')
+                    field: territoryid
+          - name: accountnumber
+            description: "Número de cuenta único del cliente."
+            tests: [not_null]
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_purchaseorderheader
+        description: "Cabeceras de las órdenes de compra a proveedores."
+        columns:
+          - name: purchaseorderid
+            description: "Clave primaria de la orden de compra."
+            tests: [not_null, unique]
+          - name: revisionnumber
+            description: "Número de revisión de la orden."
+            tests: [not_null]
+          - name: status
+            description: "Estado de la orden."
+            tests: [not_null]
+          - name: employeeid
+            description: "Empleado que realizó la orden."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_employee')
+                    field: businessentityid
+          - name: vendorid
+            description: "Proveedor al que se realiza la orden."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_vendor')
+                    field: businessentityid
+          - name: shipmethodid
+            description: "Método de envío."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_shipmethod')
+                    field: shipmethodid
+          - name: orderdate
+            description: "Fecha de la orden."
+            tests: [not_null]
+          - name: shipdate
+            description: "Fecha de envío."
+          - name: subtotal
+            description: "Subtotal de la orden."
+            tests: [not_null]
+          - name: taxamt
+            description: "Monto de impuestos."
+            tests: [not_null]
+          - name: freight
+            description: "Costo de flete."
+            tests: [not_null]
+          - name: totaldue
+            description: "Total de la orden (calculado)."
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_purchaseorderdetail
+        description: "Detalles de las órdenes de compra."
+        columns:
+          - name: purchaseorderid
+            description: "Referencia a la cabecera de la orden de compra."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_purchaseorderheader')
+                    field: purchaseorderid
+          - name: purchaseorderdetailid
+            description: "ID del detalle de la orden."
+            tests: [not_null]
+          - name: duedate
+            description: "Fecha de vencimiento."
+            tests: [not_null]
+          - name: orderqty
+            description: "Cantidad ordenada."
+            tests: [not_null]
+          - name: productid
+            description: "Producto ordenado."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_product')
+                    field: productid
+          - name: unitprice
+            description: "Precio unitario."
+            tests: [not_null]
+          - name: linetotal
+            description: "Total de la línea (calculado)."
+          - name: receivedqty
+            description: "Cantidad recibida."
+            tests: [not_null]
+          - name: rejectedqty
+            description: "Cantidad rechazada."
+            tests: [not_null]
+          - name: stockedqty
+            description: "Cantidad almacenada (calculado)."
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_jobcandidate
+        description: "Candidatos a puestos de trabajo."
+        columns:
+          - name: jobcandidateid
+            description: "Clave primaria del candidato."
+            tests: [not_null, unique]
+          - name: businessentityid
+            description: "ID de la entidad de negocio asociada (si aplica)."
+            tests:
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_person')
+                    field: businessentityid
+          - name: resume
+            description: "Currículum del candidato."
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_businessentitycontact
+        description: "Asocia personas (contactos) a entidades de negocio."
+        columns:
+          - name: businessentityid
+            description: "Referencia a la entidad de negocio."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_businessentity')
+                    field: businessentityid
+          - name: personid
+            description: "Referencia a la persona de contacto."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_person')
+                    field: businessentityid
+          - name: contacttypeid
+            description: "Tipo de contacto."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_contacttype')
+                    field: contacttypeid
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_password
+        description: "Contraseñas hasheadas de los usuarios."
+        columns:
+          - name: businessentityid
+            description: "ID de la entidad de negocio (usuario)."
+            tests:
+              - not_null
+              - unique
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_person')
+                    field: businessentityid
+          - name: passwordhash
+            description: "Hash de la contraseña."
+            tests: [not_null]
+          - name: passwordsalt
+            description: "Salt de la contraseña."
+            tests: [not_null]
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_emailaddress
+        description: "Direcciones de correo electrónico de las entidades de negocio."
+        columns:
+          - name: businessentityid
+            description: "ID de la entidad de negocio."
+            tests: [not_null]
+          - name: emailaddressid
+            description: "ID del correo electrónico."
+            tests: [not_null]
+          - name: emailaddress
+            description: "Dirección de correo electrónico."
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_store
+        description: "Información de las tiendas que son clientes."
+        columns:
+          - name: businessentityid
+            description: "Clave primaria, referencia a BusinessEntity."
+            tests:
+              - not_null
+              - unique
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_businessentity')
+                    field: businessentityid
+          - name: name
+            description: "Nombre de la tienda."
+            tests: [not_null]
+          - name: salespersonid
+            description: "Vendedor asignado a la tienda."
+          - name: demographics
+            description: "Información demográfica de la tienda."
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_salesperson
+        description: "Información sobre los vendedores."
+        columns:
+          - name: businessentityid
+            description: "Clave primaria, referencia al empleado."
+            tests:
+              - not_null
+              - unique
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_employee')
+                    field: businessentityid
+          - name: territoryid
+            description: "Territorio de ventas asignado."
+            tests:
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_salesterritory')
+                    field: territoryid
+          - name: salesquota
+            description: "Cuota de ventas."
+          - name: bonus
+            description: "Bono de ventas."
+            tests: [not_null]
+          - name: commissionpct
+            description: "Porcentaje de comisión."
+            tests: [not_null]
+          - name: salesytd
+            description: "Ventas acumuladas del año."
+            tests: [not_null]
+          - name: saleslastyear
+            description: "Ventas del año anterior."
+            tests: [not_null]
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_salespersonquotahistory
+        description: "Historial de cuotas de ventas de los vendedores."
+        columns:
+          - name: businessentityid
+            description: "ID del vendedor."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_salesperson')
+                    field: businessentityid
+          - name: quotadate
+            description: "Fecha de la cuota."
+            tests: [not_null]
+          - name: salesquota
+            description: "Monto de la cuota de ventas."
+            tests: [not_null]
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_salestaxrate
+        description: "Tasas de impuestos por estado/provincia."
+        columns:
+          - name: salestaxrateid
+            description: "Clave primaria de la tasa de impuesto."
+            tests: [not_null, unique]
+          - name: stateprovinceid
+            description: "ID del estado/provincia."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_stateprovince')
+                    field: stateprovinceid
+          - name: taxtype
+            description: "Tipo de impuesto."
+            tests: [not_null]
+          - name: taxrate
+            description: "Tasa de impuesto."
+            tests: [not_null]
+          - name: name
+            description: "Nombre del impuesto."
+            tests: [not_null]
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_salesterritoryhistory
+        description: "Historial de asignación de vendedores a territorios."
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - businessentityid
+                  - territoryid
+                  - startdate
+        columns:
+          - name: businessentityid
+            description: "ID del vendedor."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_salesperson')
+                    field: businessentityid
+          - name: territoryid
+            description: "ID del territorio."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_salesterritory')
+                    field: territoryid
+          - name: startdate
+            description: "Fecha de inicio de la asignación."
+            tests: [not_null]
+          - name: enddate
+            description: "Fecha de fin de la asignación."
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_shoppingcartitem
+        description: "Items en los carritos de compra de los usuarios."
+        columns:
+          - name: shoppingcartitemid
+            description: "Clave primaria del item del carrito."
+            tests: [not_null, unique]
+          - name: shoppingcartid
+            description: "ID del carrito de compra."
+            tests: [not_null]
+          - name: quantity
+            description: "Cantidad del producto."
+            tests: [not_null]
+          - name: productid
+            description: "ID del producto."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_product')
+                    field: productid
+          - name: datecreated
+            description: "Fecha de creación del item."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_specialofferproduct
+        description: "Tabla de asociación entre ofertas especiales y productos."
+        columns:
+          - name: specialofferid
+            description: "ID de la oferta especial."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_specialoffer')
+                    field: specialofferid
+          - name: productid
+            description: "ID del producto."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_product')
+                    field: productid
+          - name: rowguid
+            description: "Identificador único de la fila."
+            tests: [not_null, unique]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_billofmaterials
+        description: "Lista de materiales para la fabricación de productos."
+        columns:
+          - name: billofmaterialsid
+            description: "Clave primaria."
+            tests: [not_null, unique]
+          - name: productassemblyid
+            description: "ID del producto ensamblado."
+          - name: componentid
+            description: "ID del componente."
+            tests: [not_null]
+          - name: startdate
+            description: "Fecha de inicio de validez."
+            tests: [not_null]
+          - name: enddate
+            description: "Fecha de fin de validez."
+          - name: unitmeasurecode
+            description: "Código de unidad de medida."
+            tests: [not_null]
+          - name: bomlevel
+            description: "Nivel en la lista de materiales."
+            tests: [not_null]
+          - name: perassemblyqty
+            description: "Cantidad por ensamblaje."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_workorder
+        description: "Órdenes de trabajo para la fabricación de productos."
+        columns:
+          - name: workorderid
+            description: "Clave primaria."
+            tests: [not_null, unique]
+          - name: productid
+            description: "ID del producto a fabricar."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_product')
+                    field: productid
+          - name: orderqty
+            description: "Cantidad ordenada."
+            tests: [not_null]
+          - name: scrappedqty
+            description: "Cantidad desechada."
+            tests: [not_null]
+          - name: stockedqty
+            description: "Cantidad almacenada (calculada)."
+          - name: startdate
+            description: "Fecha de inicio."
+            tests: [not_null]
+          - name: enddate
+            description: "Fecha de fin."
+          - name: duedate
+            description: "Fecha de vencimiento."
+            tests: [not_null]
+          - name: scrapreasonid
+            description: "ID de la razón de desecho."
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_workorderrouting
+        description: "Rutas de las órdenes de trabajo en las ubicaciones de fabricación."
+        columns:
+          - name: workorderid
+            description: "ID de la orden de trabajo."
+            tests: [not_null]
+          - name: productid
+            description: "ID del producto."
+            tests: [not_null]
+          - name: operationsequence
+            description: "Secuencia de la operación."
+            tests: [not_null]
+          - name: locationid
+            description: "ID de la ubicación."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_location')
+                    field: locationid
+          - name: scheduledstartdate
+            description: "Fecha de inicio programada."
+            tests: [not_null]
+          - name: scheduledenddate
+            description: "Fecha de fin programada."
+            tests: [not_null]
+          - name: actualstartdate
+            description: "Fecha de inicio real."
+          - name: actualenddate
+            description: "Fecha de fin real."
+          - name: actualresourcehrs
+            description: "Horas de recurso reales."
+          - name: plannedcost
+            description: "Costo planificado."
+            tests: [not_null]
+          - name: actualcost
+            description: "Costo real."
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+
+      - name: core_transactionhistory
+        description: "Historial de transacciones de inventario."
+        columns:
+          - name: transactionid
+            description: "Clave primaria."
+            tests: [not_null, unique]
+          - name: productid
+            description: "ID del producto."
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('bronze', 'core_product')
+                    field: productid
+          - name: referenceorderid
+            description: "ID de la orden de referencia."
+            tests: [not_null]
+          - name: referenceorderlineid
+            description: "ID de la línea de la orden de referencia."
+            tests: [not_null]
+          - name: transactiondate
+            description: "Fecha de la transacción."
+            tests: [not_null]
+          - name: transactiontype
+            description: "Tipo de transacción (W, S, P)."
+            tests: [not_null]
+          - name: quantity
+            description: "Cantidad."
+            tests: [not_null]
+          - name: actualcost
+            description: "Costo real."
+            tests: [not_null]
+          - name: modifieddate
+            description: "Fecha de última modificación."
+            tests: [not_null]
+            
+      - name: review_users
+        description: "Contiene la información de los usuarios registrados en la plataforma que realizan reseñas de productos."
+        columns:
+          - name: id
+            description: "Identificador único del usuario. Permite diferenciar cada cliente dentro del sistema."
+            tests: [not_null, unique]
+          - name: firstname
+            description: "Nombre del usuario. Se utiliza para identificación básica y personalización en reportes."
+            tests: [not_null]
+          - name: lastname
+            description: "Apellido del usuario. Complementa la identificación personal."
+            tests: [not_null]
+          - name: email
+            description: "Correo electrónico del usuario. Permite comunicación y validación de identidad."
+            tests: [not_null, unique]
+          - name: birthdate
+            description: "Fecha de nacimiento. Utilizada para análisis demográficos y segmentación por edad."
+
+      - name: review_reviews
+        description: "Registra las reseñas y calificaciones otorgadas por los usuarios a los productos comprados en una tienda."
+        columns:
+          - name: id
+            description: "Identificador único de la reseña."
+            tests: [not_null, unique]
+          - name: product
+            description: "Nombre del producto evaluado por el usuario."
+            tests: [not_null]
+          - name: rating
+            description: "Calificación numérica otorgada al producto (escala 1–5)."
+            tests: [not_null]
+          - name: date
+            description: "Fecha en la que se realizó la evaluación."
+            tests: [not_null]
+          - name: userid
+            description: "Identifica al usuario que realizó la reseña. Foreign key to User(userid)."
+            tests: [not_null]
+          - name: storeid
+            description: "Indica en qué tienda o canal se adquirió el producto. Foreign key to Store(storeid)."
+            tests: [not_null]

@@ -1,0 +1,3 @@
+ASSET_PREFIX_SOURCE = "source"
+ASSET_PREFIX_TRANSFORMED = "transformed"
+ASSET_PREFIX_REPORTS = "reports"

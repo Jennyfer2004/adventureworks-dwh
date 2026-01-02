@@ -1,0 +1,10 @@
+ASSET_GROUP_LANDING = "landing"
+ASSET_GROUP_BRONZE = "bronze"
+ASSET_GROUP_SILVER = "silver"
+ASSET_GROUP_GOLD = "gold"
+ASSET_GROUP_LABS = "labs"
+
+SETUP_PREFIX = "setup"
+AW_CORE_PREFIX = "aw_core"
+AW_REVIEWS_API_PREFIX = "aw_reviews_api"
+AW_HR_FILES_PREFIX = "aw_hr_files"

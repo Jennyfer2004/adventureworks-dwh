@@ -1,0 +1,1688 @@
+version: 2
+
+models:
+  - name: addresstype
+    description: "List of address type classifications."
+    columns:
+      - name: addresstypeid
+        description: "Primary key for AddressType records."
+        tests: [not_null]
+      - name: name
+        description: "Name of the address type."
+        tests: [not_null]
+
+  - name: contacttype
+    description: "Types of contact roles within an organization."
+    columns:
+      - name: contacttypeid
+        description: "Primary key for ContactType records."
+        tests: [not_null, unique]
+      - name: name
+        description: "Name of the contact type."
+        tests: [not_null]
+
+  - name: countryregion
+    description: "List of countries or regions."
+    columns:
+      - name: countryregioncode
+        description: "Primary key, code for the country or region."
+        tests: [not_null, unique]
+      - name: name
+        description: "Country or region name."
+        tests: [not_null]
+
+  - name: creditcard
+    description: "Customer credit card information."
+    columns:
+      - name: creditcardid
+        description: "Primary key for CreditCard records."
+        tests: [not_null, unique]
+      - name: cardtype
+        description: "Type of credit card (e.g., Visa, MasterCard)."
+        tests: [not_null]
+      - name: cardnumber
+        description: "Credit card number."
+        tests: [not_null]
+      - name: expmonth
+        description: "Card expiration month."
+        tests: [not_null]
+      - name: expyear
+        description: "Card expiration year."
+        tests: [not_null]
+
+  - name: culture
+    description: "Language and culture identifiers."
+    columns:
+      - name: cultureid
+        description: "Primary key for Culture records."
+        tests: [not_null, unique]
+      - name: name
+        description: "Culture name."
+        tests: [not_null]
+
+  - name: currency
+    description: "List of currencies used in the system."
+    columns:
+      - name: currencycode
+        description: "Primary key, currency code."
+        tests: [not_null, unique]
+      - name: name
+        description: "Currency name."
+        tests: [not_null]
+
+  - name: illustration
+    description: "Illustrations used in product models."
+    columns:
+      - name: illustrationid
+        description: "Primary key for Illustration records."
+        tests: [not_null, unique]
+      - name: diagram
+        description: "Diagram content."
+
+  - name: location
+    description: "Manufacturing or storage locations."
+    columns:
+      - name: locationid
+        description: "Primary key for Location records."
+        tests: [not_null, unique]
+      - name: name
+        description: "Location name."
+        tests: [not_null]
+      - name: costrate
+        description: "Standard hourly cost rate."
+        tests: [not_null]
+      - name: availability
+        description: "Availability percentage of the location."
+        tests: [not_null]
+
+  - name: phonenumbertype
+    description: "Types of phone numbers, such as home, work, or mobile."
+    columns:
+      - name: phonenumbertypeid
+        description: "Primary key for PhoneNumberType records."
+        tests: [not_null, unique]
+      - name: name
+        description: "Type name."
+        tests: [not_null]
+
+  - name: productcategory
+    description: "Product category hierarchy."
+    columns:
+      - name: productcategoryid
+        description: "Primary key for ProductCategory records."
+        tests: [not_null, unique]
+      - name: name
+        description: "Category name."
+        tests: [not_null]
+
+  - name: productdescription
+    description: "Product descriptions in various languages."
+    columns:
+      - name: productdescriptionid
+        description: "Primary key for ProductDescription records."
+        tests: [not_null, unique]
+      - name: description
+        description: "Description text."
+        tests: [not_null]
+
+  - name: productmodel
+    description: "Product model definitions and associated metadata."
+    columns:
+      - name: productmodelid
+        description: "Primary key for ProductModel records."
+        tests: [not_null, unique]
+      - name: name
+        description: "Model name."
+        tests: [not_null]
+      - name: catalogdescription
+        description: "XML catalog description."
+      - name: instructions
+        description: "Model instructions."
+
+  - name: productphoto
+    description: "Photographs of products."
+    columns:
+      - name: productphotoid
+        description: "Primary key for ProductPhoto records."
+        tests: [not_null, unique]
+      - name: thumbnailphoto
+        description: "Thumbnail image."
+      - name: thumbnailphotofilename
+        description: "Thumbnail file name."
+      - name: largephoto
+        description: "Full-size image."
+      - name: largephotofilename
+        description: "Full-size file name."
+
+  - name: salesreason
+    description: "Reasons for customer sales."
+    columns:
+      - name: salesreasonid
+        description: "Primary key for SalesReason records."
+        tests: [not_null, unique]
+      - name: name
+        description: "Reason name."
+        tests: [not_null]
+      - name: reasontype
+        description: "Category of the sales reason."
+        tests: [not_null]
+
+  - name: scrapreason
+    description: "Reasons for scrapping manufacturing parts."
+    columns:
+      - name: scrapreasonid
+        description: "Primary key for ScrapReason records."
+        tests: [not_null, unique]
+      - name: name
+        description: "Scrap reason name."
+        tests: [not_null]
+
+  - name: shipmethod
+    description: "Shipping method options and rates."
+    columns:
+      - name: shipmethodid
+        description: "Primary key for ShipMethod records."
+        tests: [not_null, unique]
+      - name: name
+        description: "Shipping method name."
+        tests: [not_null]
+      - name: shipbase
+        description: "Base shipping cost."
+        tests: [not_null]
+      - name: shiprate
+        description: "Shipping rate per item."
+        tests: [not_null]
+
+  - name: specialoffer
+    description: "Discount offers and promotions."
+    columns:
+      - name: specialofferid
+        description: "Primary key for SpecialOffer records."
+        tests: [not_null, unique]
+      - name: description
+        description: "Offer description."
+        tests: [not_null]
+      - name: discountpct
+        description: "Discount percentage."
+        tests: [not_null]
+      - name: type
+        description: "Type of offer."
+        tests: [not_null]
+      - name: category
+        description: "Offer category."
+        tests: [not_null]
+      - name: startdate
+        description: "Start date of the offer."
+        tests: [not_null]
+      - name: enddate
+        description: "End date of the offer."
+        tests: [not_null]
+      - name: minqty
+        description: "Minimum quantity required."
+        tests: [not_null]
+      - name: maxqty
+        description: "Maximum quantity allowed."
+
+  - name: transactionhistoryarchive
+    description: "Archived transaction records for products."
+    columns:
+      - name: transactionid
+        description: "Primary key for TransactionHistoryArchive records."
+        tests: [not_null, unique]
+      - name: productid
+        description: "Product identifier."
+        tests: [not_null]
+      - name: referenceorderid
+        description: "Reference order identifier."
+        tests: [not_null]
+      - name: referenceorderlineid
+        description: "Reference order line identifier."
+        tests: [not_null]
+      - name: transactiondate
+        description: "Transaction date."
+        tests: [not_null]
+      - name: transactiontype
+        description: "Transaction type: W=WorkOrder, S=SalesOrder, P=PurchaseOrder."
+        tests: [not_null]
+      - name: quantity
+        description: "Quantity involved in the transaction."
+        tests: [not_null]
+      - name: actualcost
+        description: "Actual cost per transaction."
+        tests: [not_null]
+
+  - name: unitmeasure
+    description: "Standard unit of measurement for products."
+    columns:
+      - name: unitmeasurecode
+        description: "Primary key for UnitMeasure records."
+        tests: [not_null, unique]
+      - name: name
+        description: "Unit name."
+        tests: [not_null]
+
+  - name: countryregioncurrency
+    description: "Mapping between countries/regions and currencies."
+    columns:
+      - name: countryregioncode
+        description: "Foreign key to CountryRegion."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('countryregion')
+                field: countryregioncode
+      - name: currencycode
+        description: "Foreign key to Currency."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('currency')
+                field: currencycode
+
+  - name: currencyrate
+    description: "Exchange rates between currency pairs."
+    columns:
+      - name: currencyrateid
+        description: "Primary key for CurrencyRate records."
+        tests: [not_null, unique]
+      - name: currencyratedate
+        description: "Date of the currency rate."
+        tests: [not_null]
+      - name: fromcurrencycode
+        description: "Foreign key to the source currency."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('currency')
+                field: currencycode
+      - name: tocurrencycode
+        description: "Foreign key to the destination currency."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('currency')
+                field: currencycode
+      - name: averagerate
+        description: "Average exchange rate."
+        tests: [not_null]
+      - name: endofdayrate
+        description: "End of day exchange rate."
+        tests: [not_null]
+
+  - name: person
+    description: "Individual contact information for a business entity."
+    columns:
+      - name: businessentityid
+        description: "Foreign key to BusinessEntity."
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              arguments:
+                to: ref('businessentity')
+                field: businessentityid
+      - name: persontype
+        description: "Type of person, such as SC, VC, IN, etc."
+        tests: [not_null]
+      - name: namestyle
+        description: "Indicates if the name is in a Western or Eastern style."
+        tests: [not_null]
+      - name: title
+        description: "Title of the person (Mr., Ms., etc.)."
+      - name: firstname
+        description: "First name of the person."
+        tests: [not_null]
+      - name: middlename
+        description: "Middle name of the person."
+      - name: lastname
+        description: "Last name of the person."
+        tests: [not_null]
+      - name: suffix
+        description: "Suffix for the name."
+      - name: emailpromotion
+        description: "Email promotion preference code."
+        tests: [not_null]
+      - name: additionalcontactinfo
+        description: "Additional contact details."
+      - name: demographics
+        description: "Demographic information."
+
+  - name: personcreditcard
+    description: "Mapping of individuals to their credit cards."
+    columns:
+      - name: businessentityid
+        description: "Foreign key to Person."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('person')
+                field: businessentityid
+      - name: creditcardid
+        description: "Foreign key to CreditCard."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('creditcard')
+                field: creditcardid
+
+  - name: personphone
+    description: "Phone numbers associated with individuals."
+    columns:
+      - name: businessentityid
+        description: "Foreign key to Person."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('person')
+                field: businessentityid
+      - name: phonenumber
+        description: "Telephone number."
+        tests: [not_null]
+      - name: phonenumbertypeid
+        description: "Foreign key to PhoneNumberType."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('phonenumbertype')
+                field: phonenumbertypeid
+
+  - name: productmodelillustration
+    description: "Mapping between product models and illustrations."
+    columns:
+      - name: productmodelid
+        description: "Foreign key to ProductModel."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('productmodel')
+                field: productmodelid
+      - name: illustrationid
+        description: "Foreign key to Illustration."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('illustration')
+                field: illustrationid
+
+  - name: productmodelproductdescriptionculture
+    description: "Associative table linking product models, product descriptions, and cultures."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - productmodelid
+              - productdescriptionid
+              - cultureid
+    columns:
+      - name: productmodelid
+        description: "Identifier of the product model."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('productmodel')
+                field: productmodelid
+      - name: productdescriptionid
+        description: "Identifier of the product description."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('productdescription')
+                field: productdescriptionid
+      - name: cultureid
+        description: "Identifier of the culture."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('culture')
+                field: cultureid
+
+  - name: productsubcategory
+    description: "Subcategories of products within a product category."
+    columns:
+      - name: productsubcategoryid
+        description: "Primary key for ProductSubcategory."
+        tests:
+          - not_null
+          - unique
+      - name: productcategoryid
+        description: "Identifier of the parent product category."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('productcategory')
+                field: productcategoryid
+      - name: name
+        description: "Name of the product subcategory."
+        tests:
+          - not_null
+
+  - name: salesterritory
+    description: "Sales territories for the organization."
+    columns:
+      - name: territoryid
+        description: "Primary key for SalesTerritory."
+        tests:
+          - not_null
+          - unique
+      - name: name
+        description: "Name of the sales territory."
+        tests:
+          - not_null
+      - name: countryregioncode
+        description: "Code of the associated country or region."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('countryregion')
+                field: countryregioncode
+      - name: group
+        description: "Group name for the territory."
+        quote: true
+        tests:
+          - not_null
+      - name: salesytd
+        description: "Year-to-date sales for the territory."
+        tests:
+          - not_null
+      - name: saleslastyear
+        description: "Sales in the previous year."
+        tests:
+          - not_null
+      - name: costytd
+        description: "Year-to-date cost for the territory."
+        tests:
+          - not_null
+      - name: costlastyear
+        description: "Cost in the previous year."
+        tests:
+          - not_null
+
+  - name: stateprovince
+    description: "State or province within a country/region."
+    columns:
+      - name: stateprovinceid
+        description: "Primary key for StateProvince."
+        tests:
+          - not_null
+          - unique
+      - name: stateprovincecode
+        description: "Code of the state or province."
+        tests:
+          - not_null
+      - name: countryregioncode
+        description: "Code of the associated country or region."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('countryregion')
+                field: countryregioncode
+      - name: isonlystateprovinceflag
+        description: "Flag indicating if this is the only state/province."
+        tests:
+          - not_null
+      - name: name
+        description: "Name of the state or province."
+        tests:
+          - not_null
+      - name: territoryid
+        description: "Identifier of the associated sales territory."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('salesterritory')
+                field: territoryid
+
+  - name: vendor
+    description: "Vendors supplying products or services."
+    columns:
+      - name: businessentityid
+        description: "Primary key referencing BusinessEntity."
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              arguments:
+                to: ref('businessentity')
+                field: businessentityid
+      - name: accountnumber
+        description: "Vendor account number."
+        tests:
+          - not_null
+      - name: name
+        description: "Name of the vendor."
+        tests:
+          - not_null
+      - name: creditrating
+        description: "Credit rating of the vendor."
+        tests:
+          - not_null
+      - name: preferredvendorstatus
+        description: "Flag indicating preferred vendor status."
+        tests:
+          - not_null
+      - name: activeflag
+        description: "Flag indicating if the vendor is active."
+        tests:
+          - not_null
+      - name: purchasingwebserviceurl
+        description: "URL of the vendor's purchasing web service."
+
+  - name: address
+    description: "Addresses used by business entities."
+    columns:
+      - name: addressid
+        description: "Primary key for Address."
+        tests:
+          - not_null
+          - unique
+      - name: addressline1
+        description: "First line of the address."
+        tests:
+          - not_null
+      - name: addressline2
+        description: "Second line of the address."
+      - name: city
+        description: "City of the address."
+      - name: stateprovinceid
+        description: "Identifier of the state or province."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stateprovince')
+                field: stateprovinceid
+      - name: postalcode
+        description: "Postal code of the address."
+        tests:
+          - not_null
+      - name: spatiallocation
+        description: "Spatial location data."
+
+  - name: businessentityaddress
+    description: "Associates business entities with addresses and address types."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - businessentityid
+              - addressid
+              - addresstypeid
+    columns:
+      - name: businessentityid
+        description: "Identifier of the business entity."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('businessentity')
+                field: businessentityid
+      - name: addressid
+        description: "Identifier of the address."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('address')
+                field: addressid
+      - name: addresstypeid
+        description: "Identifier of the address type."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('addresstype')
+                field: addresstypeid
+
+  - name: productcosthistory
+    description: "Historical cost records for each product."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - productid
+              - startdate
+    columns:
+      - name: productid
+        description: "Reference to the product."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('product')
+                field: productid
+      - name: startdate
+        description: "Start date of the cost record."
+        tests:
+          - not_null
+      - name: enddate
+        description: "End date of the cost record."
+      - name: standardcost
+        description: "Cost of the product at the given time."
+        tests:
+          - not_null
+
+  - name: productinventory
+    description: "Current inventory levels of products at various locations."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - productid
+              - locationid
+    columns:
+      - name: productid
+        description: "Reference to the product."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('product')
+                field: productid
+      - name: locationid
+        description: "Reference to the inventory location."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('location')
+                field: locationid
+      - name: shelf
+        description: "Shelf identifier within the location."
+      - name: bin
+        description: "Bin number within the shelf."
+        tests:
+          - not_null
+      - name: quantity
+        description: "Quantity of product available at the location."
+        tests:
+          - not_null
+
+  - name: productlistpricehistory
+    description: "Historical list price records for products."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - productid
+              - startdate
+    columns:
+      - name: productid
+        description: "Reference to the product."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('product')
+                field: productid
+      - name: startdate
+        description: "Start date of the list price."
+        tests:
+          - not_null
+      - name: enddate
+        description: "End date of the list price period."
+      - name: listprice
+        description: "List price of the product."
+        tests:
+          - not_null
+
+  - name: productproductphoto
+    description: "Mapping of products to their photos."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - productid
+              - productphotoid
+    columns:
+      - name: productid
+        description: "Reference to the product."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('product')
+                field: productid
+      - name: productphotoid
+        description: "Reference to the product photo."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('productphoto')
+                field: productphotoid
+      - name: primary
+        description: "Indicates if this photo is primary for the product."
+        tests:
+          - not_null
+
+  - name: productvendor
+    description: "Vendor information for products including pricing and lead times."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - productid
+              - businessentityid
+    columns:
+      - name: productid
+        description: "Reference to the product."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('product')
+                field: productid
+      - name: businessentityid
+        description: "Reference to the vendor."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('vendor')
+                field: businessentityid
+      - name: averageleadtime
+        description: "Average lead time for the vendor to deliver the product."
+        tests:
+          - not_null
+      - name: standardprice
+        description: "Standard price charged by the vendor."
+        tests:
+          - not_null
+      - name: lastreceiptcost
+        description: "Cost of the last received product."
+      - name: lastreceiptdate
+        description: "Date when the last product was received."
+      - name: minorderqty
+        description: "Minimum quantity that can be ordered."
+        tests:
+          - not_null
+      - name: maxorderqty
+        description: "Maximum quantity that can be ordered."
+        tests:
+          - not_null
+      - name: onorderqty
+        description: "Quantity currently on order."
+      - name: unitmeasurecode
+        description: "Unit of measure code for the product."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('unitmeasure')
+                field: unitmeasurecode
+
+  - name: salesorderheader
+    description: "Stores general information about customer sales orders."
+    columns:
+      - name: salesorderid
+        description: "Primary key for each sales order."
+        tests:
+          - not_null
+          - unique
+      - name: revisionnumber
+        description: "Incremental number tracking order revisions."
+        tests:
+          - not_null
+      - name: orderdate
+        description: "Date when the order was placed."
+        tests:
+          - not_null
+      - name: duedate
+        description: "Date when the order is due to be shipped."
+        tests:
+          - not_null
+      - name: shipdate
+        description: "Date when the order was shipped."
+      - name: status
+        description: "Current status of the order."
+        tests:
+          - not_null
+      - name: onlineorderflag
+        description: "Indicates if the order was placed online."
+        tests:
+          - not_null
+      - name: salesordernumber
+        description: "Unique sales order number for reference."
+        tests:
+          - not_null
+      - name: purchaseordernumber
+        description: "Customer's purchase order number."
+      - name: accountnumber
+        description: "Customer’s account number."
+      - name: customerid
+        description: "Reference to the customer placing the order."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('customer')
+                field: customerid
+      - name: salespersonid
+        description: "Reference to the salesperson responsible for the order."
+        tests:
+          - relationships:
+              arguments:
+                to: ref('salesperson')
+                field: businessentityid
+      - name: territoryid
+        description: "Reference to the sales territory."
+        tests:
+          - relationships:
+              arguments:
+                to: ref('salesterritory')
+                field: territoryid
+      - name: billtoaddressid
+        description: "Billing address reference."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('address')
+                field: addressid
+      - name: shiptoaddressid
+        description: "Shipping address reference."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('address')
+                field: addressid
+      - name: shipmethodid
+        description: "Reference to the method used to ship the order."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('shipmethod')
+                field: shipmethodid
+      - name: creditcardid
+        description: "Reference to the credit card used for the order."
+        tests:
+          - relationships:
+              arguments:
+                to: ref('creditcard')
+                field: creditcardid
+      - name: creditcardapprovalcode
+        description: "Approval code from the credit card company."
+      - name: currencyrateid
+        description: "Reference to the applicable currency rate."
+        tests:
+          - relationships:
+              arguments:
+                to: ref('currencyrate')
+                field: currencyrateid
+      - name: subtotal
+        description: "Total before taxes and freight."
+        tests:
+          - not_null
+      - name: taxamt
+        description: "Tax amount applied to the order."
+        tests:
+          - not_null
+      - name: freight
+        description: "Freight cost for shipping the order."
+        tests:
+          - not_null
+      - name: totaldue
+        description: "Computed total amount due."
+      - name: comment
+        description: "Optional order comments or notes."
+
+  - name: salesorderheadersalesreason
+    description: "Associative table linking sales orders to their sales reasons."
+    columns:
+      - name: salesorderid
+        description: "Reference to the sales order."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('salesorderheader')
+                field: salesorderid
+      - name: salesreasonid
+        description: "Reference to the reason associated with the sales order."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('salesreason')
+                field: salesreasonid
+
+  - name: salesorderdetail
+    description: "Contiene las líneas de items asociadas a cada orden de venta."
+    tests:
+      # Test para la clave primaria compuesta
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - salesorderid
+              - salesorderdetailid
+    columns:
+      - name: salesorderid
+        description: "Clave foránea de la orden de venta."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('salesorderheader')
+                field: salesorderid
+      - name: salesorderdetailid
+        description: "Clave primaria de la línea de detalle."
+        tests:
+          - not_null
+      - name: carriertrackingnumber
+        description: "Número de seguimiento del envío."
+      - name: orderqty
+        description: "Cantidad de productos ordenados."
+        tests:
+          - not_null
+      - name: productid
+        description: "Clave foránea del producto."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('product')
+                field: productid
+      - name: specialofferid
+        description: "Clave foránea de la oferta especial."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('specialoffer')
+                field: specialofferid
+      - name: unitprice
+        description: "Precio unitario del producto."
+        tests:
+          - not_null
+      - name: unitpricediscount
+        description: "Porcentaje de descuento aplicado al precio unitario."
+        tests:
+          - not_null
+      - name: linetotal
+        description: "Total de la línea, calculado como (UnitPrice * (1 - UnitPriceDiscount)) * OrderQty."
+        tests:
+          - not_null
+
+  # --- MODELOS FALTANTES ---
+
+  - name: businessentity
+    description: "Entidad única para clientes, proveedores o empleados."
+    columns:
+      - name: businessentityid
+        description: "Clave primaria para todas las entidades de negocio."
+        tests:
+          - not_null
+          - unique
+
+  - name: product
+    description: "Información de los productos de la compañía."
+    columns:
+      - name: productid
+        description: "Clave primaria del producto."
+        tests:
+          - not_null
+          - unique
+      - name: name
+        description: "Nombre del producto."
+        tests:
+          - not_null
+      - name: productnumber
+        description: "Número de producto único para identificación."
+        tests:
+          - not_null
+      - name: makeflag
+        description: "Indica si el producto es fabricado internamente (1) o comprado (0)."
+        tests:
+          - not_null
+      - name: finishedgoodsflag
+        description: "Indica si el producto es un artículo vendible (1) o un componente (0)."
+        tests:
+          - not_null
+      - name: color
+        description: "Color del producto."
+      - name: safetystocklevel
+        description: "Nivel mínimo de inventario."
+        tests:
+          - not_null
+      - name: reorderpoint
+        description: "Nivel de inventario en el que se debe realizar un nuevo pedido."
+        tests:
+          - not_null
+      - name: standardcost
+        description: "Costo de fabricación o compra del producto."
+        tests:
+          - not_null
+      - name: listprice
+        description: "Precio de venta al público."
+        tests:
+          - not_null
+      - name: size
+        description: "Tamaño del producto."
+      - name: sizeunitmeasurecode
+        description: "Unidad de medida para el tamaño."
+      - name: weightunitmeasurecode
+        description: "Unidad de medida para el peso."
+      - name: weight
+        description: "Peso del producto."
+      - name: daystomanufacture
+        description: "Número de días necesarios para producir el artículo."
+        tests:
+          - not_null
+      - name: productline
+        description: "Línea de producto (R=Road, M=Mountain, T=Touring, S=Standard)."
+      - name: class
+        description: "Clase de producto (H=High, M=Medium, L=Low)."
+      - name: style
+        description: "Estilo de producto (W=Womens, M=Mens, U=Universal)."
+      - name: productsubcategoryid
+        description: "Clave foránea de la subcategoría del producto."
+      - name: productmodelid
+        description: "Clave foránea del modelo del producto."
+      - name: sellstartdate
+        description: "Fecha a partir de la cual el producto está disponible para la venta."
+        tests:
+          - not_null
+      - name: sellenddate
+        description: "Fecha en que el producto dejó de estar disponible para la venta."
+      - name: discontinueddate
+        description: "Fecha en que el producto fue descatalogado."
+
+  - name: employee
+    description: "Información de los empleados, incluyendo datos personales y de puesto."
+    columns:
+      - name: businessentityid
+        description: "Clave primaria del empleado."
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              arguments:
+                to: ref('businessentity')
+                field: businessentityid
+      - name: nationalidnumber
+        description: "Número de identificación nacional del empleado."
+        tests:
+          - not_null
+      - name: loginid
+        description: "Login de red del empleado."
+        tests:
+          - not_null
+      - name: jobtitle
+        description: "Cargo del empleado."
+        tests:
+          - not_null
+      - name: birthdate
+        description: "Fecha de nacimiento del empleado."
+        tests:
+          - not_null
+      - name: maritalstatus
+        description: "Estado civil (S=Soltero, M=Casado)."
+        tests:
+          - not_null
+      - name: gender
+        description: "Género (M=Masculino, F=Femenino)."
+        tests:
+          - not_null
+      - name: hiredate
+        description: "Fecha de contratación."
+        tests:
+          - not_null
+      - name: salariedflag
+        description: "Indica si el empleado recibe un salario fijo (1) o por horas (0)."
+        tests:
+          - not_null
+      - name: vacationhours
+        description: "Horas de vacaciones disponibles."
+        tests:
+          - not_null
+      - name: sickleavehours
+        description: "Horas de baja por enfermedad disponibles."
+        tests:
+          - not_null
+      - name: currentflag
+        description: "Indica si el empleado está activo en la empresa."
+        tests:
+          - not_null
+
+  - name: customer
+    description: "Información de los clientes, ya sean tiendas o personas."
+    columns:
+      - name: customerid
+        description: "Clave primaria del cliente."
+        tests:
+          - not_null
+          - unique
+      - name: personid
+        description: "Clave foránea a la tabla de personas. Nulo si el cliente es una tienda."
+      - name: storeid
+        description: "Clave foránea a la tabla de tiendas. Nulo si el cliente es una persona."
+      - name: territoryid
+        description: "Clave foránea del territorio de ventas."
+      - name: accountnumber
+        description: "Número de cuenta único del cliente."
+        tests:
+          - not_null
+
+  - name: purchaseorderheader
+    description: "Cabecera de las órdenes de compra a proveedores."
+    columns:
+      - name: purchaseorderid
+        description: "Clave primaria de la orden de compra."
+        tests:
+          - not_null
+          - unique
+      - name: revisionnumber
+        description: "Número de revisión de la orden."
+        tests:
+          - not_null
+      - name: status
+        description: "Estado de la orden (1=Pendiente, 2=Aprobada, 3=Rechazada, 4=Completada)."
+        tests:
+          - not_null
+      - name: employeeid
+        description: "Empleado que generó la orden."
+        tests:
+          - not_null
+      - name: vendorid
+        description: "Proveedor al que se realiza la compra."
+        tests:
+          - not_null
+      - name: shipmethodid
+        description: "Método de envío."
+        tests:
+          - not_null
+      - name: orderdate
+        description: "Fecha de creación de la orden."
+        tests:
+          - not_null
+      - name: shipdate
+        description: "Fecha de envío esperada."
+      - name: subtotal
+        description: "Subtotal de la orden."
+        tests:
+          - not_null
+      - name: taxamt
+        description: "Monto de impuestos."
+        tests:
+          - not_null
+      - name: freight
+        description: "Costo del flete."
+        tests:
+          - not_null
+      - name: totaldue
+        description: "Monto total de la orden."
+        tests:
+          - not_null
+
+  - name: purchaseorderdetail
+    description: "Líneas de detalle para cada orden de compra."
+    columns:
+      - name: purchaseorderid
+        description: "Clave foránea de la orden de compra."
+        tests:
+          - not_null
+      - name: purchaseorderdetailid
+        description: "Clave primaria de la línea de detalle."
+        tests:
+          - not_null
+      - name: duedate
+        description: "Fecha de entrega esperada para el producto."
+        tests:
+          - not_null
+      - name: orderqty
+        description: "Cantidad de productos pedidos."
+        tests:
+          - not_null
+      - name: productid
+        description: "Clave foránea del producto."
+        tests:
+          - not_null
+      - name: unitprice
+        description: "Precio de costo por unidad."
+        tests:
+          - not_null
+      - name: linetotal
+        description: "Total de la línea, calculado como (OrderQty * UnitPrice)."
+        tests:
+          - not_null
+      - name: receivedqty
+        description: "Cantidad de unidades recibidas."
+        tests:
+          - not_null
+      - name: rejectedqty
+        description: "Cantidad de unidades rechazadas."
+        tests:
+          - not_null
+      - name: stockedqty
+        description: "Cantidad almacenada, calculada como (ReceivedQty - RejectedQty)."
+        tests:
+          - not_null
+
+  - name: salesperson
+    description: "Información de ventas para los empleados que son vendedores."
+    columns:
+      - name: businessentityid
+        description: "Clave primaria del vendedor. Es una clave foránea a Employee."
+        tests:
+          - not_null
+          - unique
+      - name: territoryid
+        description: "Territorio de ventas asignado al vendedor."
+      - name: salesquota
+        description: "Cuota de ventas trimestral."
+      - name: bonus
+        description: "Bono de ventas acumulado."
+        tests:
+          - not_null
+      - name: commissionpct
+        description: "Porcentaje de comisión sobre las ventas."
+        tests:
+          - not_null
+      - name: salesytd
+        description: "Ventas acumuladas en el año actual (Year-to-Date)."
+        tests:
+          - not_null
+      - name: saleslastyear
+        description: "Ventas totales del año anterior."
+        tests:
+          - not_null
+
+  - name: store
+    description: "Tiendas que son clientes de Adventure Works."
+    columns:
+      - name: businessentityid
+        description: "Clave primaria de la tienda."
+        tests:
+          - not_null
+          - unique
+      - name: name
+        description: "Nombre de la tienda."
+        tests:
+          - not_null
+      - name: salespersonid
+        description: "Vendedor asignado a la cuenta de la tienda."
+      - name: demographics
+        description: "Información demográfica de la tienda en formato XML."
+
+  - name: workorder
+    description: "Órdenes de trabajo para la fabricación de productos."
+    columns:
+      - name: workorderid
+        description: "Clave primaria de la orden de trabajo."
+        tests:
+          - not_null
+          - unique
+      - name: productid
+        description: "Producto que se va a fabricar."
+        tests:
+          - not_null
+      - name: orderqty
+        description: "Cantidad de unidades a producir."
+        tests:
+          - not_null
+      - name: scrappedqty
+        description: "Cantidad de unidades desechadas."
+        tests:
+          - not_null
+      - name: stockedqty
+        description: "Cantidad de unidades que pasaron el control de calidad."
+        tests:
+          - not_null
+      - name: startdate
+        description: "Fecha de inicio de la orden de trabajo."
+        tests:
+          - not_null
+      - name: enddate
+        description: "Fecha de finalización de la orden de trabajo."
+      - name: duedate
+        description: "Fecha de entrega requerida."
+        tests:
+          - not_null
+      - name: scrapreasonid
+        description: "Razón por la que los productos fueron desechados."
+
+  - name: transactionhistory
+    description: "Historial de transacciones de inventario de productos."
+    columns:
+      - name: transactionid
+        description: "Clave primaria de la transacción."
+        tests:
+          - not_null
+          - unique
+      - name: productid
+        description: "Producto involucrado en la transacción."
+        tests:
+          - not_null
+      - name: referenceorderid
+        description: "Orden de compra, venta o trabajo asociada."
+        tests:
+          - not_null
+      - name: referenceorderlineid
+        description: "Línea de la orden asociada."
+        tests:
+          - not_null
+      - name: transactiondate
+        description: "Fecha y hora de la transacción."
+        tests:
+          - not_null
+      - name: transactiontype
+        description: "Tipo de transacción (W=Work Order, S=Sales Order, P=Purchase Order)."
+        tests:
+          - not_null
+      - name: quantity
+        description: "Cantidad de productos en la transacción."
+        tests:
+          - not_null
+      - name: actualcost
+        description: "Costo del producto en la transacción."
+        tests:
+          - not_null
+
+  # --- INICIO DE MODELOS FALTANTES ---
+
+  - name: billofmaterials
+    description: "Define las relaciones de componentes para la fabricación de productos ensamblados."
+    columns:
+      - name: billofmaterialsid
+        description: "Clave primaria de la lista de materiales."
+        tests:
+          - not_null
+          - unique
+      - name: productassemblyid
+        description: "Producto final ensamblado. Es nulo para componentes comprados."
+      - name: componentid
+        description: "Clave foránea del producto componente."
+        tests:
+          - not_null
+      - name: startdate
+        description: "Fecha en que el componente se volvió efectivo en la lista de materiales."
+        tests:
+          - not_null
+      - name: enddate
+        description: "Fecha en que el componente dejó de ser efectivo."
+      - name: unitmeasurecode
+        description: "Unidad de medida para el componente."
+        tests:
+          - not_null
+      - name: bomlevel
+        description: "Nivel del componente en la jerarquía de ensamblaje."
+        tests:
+          - not_null
+      - name: perassemblyqty
+        description: "Cantidad del componente necesaria para un ensamblaje."
+        tests:
+          - not_null
+
+  - name: businessentitycontact
+    description: "Asocia contactos (personas) con entidades de negocio (tiendas, proveedores)."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - businessentityid
+              - personid
+              - contacttypeid
+    columns:
+      - name: businessentityid
+        description: "Clave foránea de la entidad de negocio."
+        tests:
+          - not_null
+      - name: personid
+        description: "Clave foránea de la persona de contacto."
+        tests:
+          - not_null
+      - name: contacttypeid
+        description: "Clave foránea del tipo de contacto."
+        tests:
+          - not_null
+
+  - name: emailaddress
+    description: "Almacena las direcciones de correo electrónico de las personas."
+    columns:
+      - name: businessentityid
+        description: "Clave foránea de la persona."
+        tests:
+          - not_null
+      - name: emailaddressid
+        description: "Identificador secuencial del correo para una persona."
+        tests:
+          - not_null
+      - name: emailaddress
+        description: "La dirección de correo electrónico."
+
+  - name: password
+    description: "Almacena las contraseñas hasheadas de los usuarios (generalmente no se usa en análisis)."
+    columns:
+      - name: businessentityid
+        description: "Clave primaria del usuario."
+        tests:
+          - not_null
+          - unique
+      - name: passwordhash
+        description: "El hash de la contraseña."
+        tests:
+          - not_null
+      - name: passwordsalt
+        description: "El salt usado para generar el hash."
+        tests:
+          - not_null
+
+  - name: specialofferproduct
+    description: "Tabla de asociación entre productos y ofertas especiales."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - specialofferid
+              - productid
+    columns:
+      - name: specialofferid
+        description: "Clave foránea de la oferta especial."
+        tests:
+          - not_null
+      - name: productid
+        description: "Clave foránea del producto."
+        tests:
+          - not_null
+
+  - name: workorderrouting
+    description: "Detalla la secuencia de operaciones y ubicaciones para las órdenes de trabajo."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - workorderid
+              - productid
+              - operationsequence
+    columns:
+      - name: workorderid
+        description: "Clave foránea de la orden de trabajo."
+        tests:
+          - not_null
+      - name: productid
+        description: "Clave foránea del producto."
+        tests:
+          - not_null
+      - name: operationsequence
+        description: "Secuencia de la operación en la ruta de fabricación."
+        tests:
+          - not_null
+      - name: locationid
+        description: "Ubicación de fabricación para esta operación."
+        tests:
+          - not_null
+      - name: scheduledstartdate
+        description: "Fecha de inicio programada."
+        tests:
+          - not_null
+      - name: scheduledenddate
+        description: "Fecha de fin programada."
+        tests:
+          - not_null
+      - name: actualstartdate
+        description: "Fecha de inicio real."
+      - name: actualenddate
+        description: "Fecha de fin real."
+      - name: actualresourcehrs
+        description: "Horas de recursos consumidas."
+      - name: plannedcost
+        description: "Costo planificado."
+        tests:
+          - not_null
+      - name: actualcost
+        description: "Costo real."
+
+  - name: jobcandidate
+    description: "Información sobre los candidatos a un puesto de trabajo."
+    columns:
+      - name: jobcandidateid
+        description: "Clave primaria del candidato."
+        tests:
+          - not_null
+          - unique
+      - name: businessentityid
+        description: "Clave foránea a la persona, si el candidato ya está en el sistema."
+      - name: resume
+        description: "Currículum del candidato en formato XML."
+
+  - name: salespersonquotahistory
+    description: "Historial de las cuotas de ventas asignadas a los vendedores."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - businessentityid
+              - quotadate
+    columns:
+      - name: businessentityid
+        description: "Clave foránea del vendedor."
+        tests:
+          - not_null
+      - name: quotadate
+        description: "Fecha en que la cuota de ventas se vuelve efectiva."
+        tests:
+          - not_null
+      - name: salesquota
+        description: "Monto de la cuota de ventas."
+        tests:
+          - not_null
+
+  - name: salestaxrate
+    description: "Tasas de impuestos sobre las ventas por región."
+    columns:
+      - name: salestaxrateid
+        description: "Clave primaria de la tasa de impuesto."
+        tests:
+          - not_null
+          - unique
+      - name: stateprovinceid
+        description: "Clave foránea del estado o provincia."
+        tests:
+          - not_null
+      - name: taxtype
+        description: "Tipo de impuesto (1=Valor Agregado, 2=Ventas, 3=Otro)."
+        tests:
+          - not_null
+      - name: taxrate
+        description: "Porcentaje de la tasa de impuesto."
+        tests:
+          - not_null
+      - name: name
+        description: "Nombre del impuesto."
+        tests:
+          - not_null
+
+  - name: salesterritoryhistory
+    description: "Historial de asignación de vendedores a territorios de ventas."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - businessentityid
+              - territoryid
+              - startdate
+    columns:
+      - name: businessentityid
+        description: "Clave foránea del vendedor."
+        tests:
+          - not_null
+      - name: territoryid
+        description: "Clave foránea del territorio."
+        tests:
+          - not_null
+      - name: startdate
+        description: "Fecha de inicio de la asignación."
+        tests:
+          - not_null
+      - name: enddate
+        description: "Fecha de fin de la asignación."
+
+  - name: shoppingcartitem
+    description: "Artículos individuales dentro de los carritos de compra de los clientes."
+    columns:
+      - name: shoppingcartitemid
+        description: "Clave primaria del artículo en el carrito."
+        tests:
+          - not_null
+          - unique
+      - name: shoppingcartid
+        description: "Identificador de la sesión del carrito de compra."
+        tests:
+          - not_null
+      - name: quantity
+        description: "Cantidad del producto."
+        tests:
+          - not_null
+      - name: productid
+        description: "Clave foránea del producto."
+        tests:
+          - not_null
+      - name: datecreated
+        description: "Fecha en que el artículo fue añadido al carrito."
+        tests:
+          - not_null
+          
+  - name: users
+    description: "Contains user information for system access."
+    columns:
+      - name: id
+        description: "Primary key for user records."
+        tests: [not_null, unique]
+
+  - name: reviews
+    description: "Contains product reviews submitted by users."
+    columns:
+      - name: id
+        description: "Primary key for review records."
+        tests: [not_null]
+      - name: product
+        description: "Product being reviewed."
+        tests: [not_null]
+      - name: rating
+        description: "Rating given to the product."
+        tests: [not_null]
+      - name: date
+        description: "Date the review was submitted."
+        tests: [not_null]
+      - name: userid
+        description: "Foreign key to user who submitted the review."
+        tests: [not_null]

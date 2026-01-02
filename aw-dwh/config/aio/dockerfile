@@ -1,0 +1,57 @@
+ARG SPARK_VERSION=3.5.1
+ARG ICEBERG_VERSION=1.5.0
+
+FROM tabulario/spark-iceberg:${SPARK_VERSION}_${ICEBERG_VERSION}
+
+ARG MYSQL_VERSION=8.3.0
+ARG POSTGRESQL_VERSION=42.7.7
+ARG TRINO_VERSION=476
+
+# Switch to root for installation
+# USER root
+
+# Install basic tools for debugging and management
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    python3-dev default-libmysqlclient-dev build-essential pkg-config gcc\
+    curl \
+    wget \
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create directories for JDBC drivers
+RUN mkdir -p /opt/spark/jars /opt/spark/jars/mysql /opt/spark/jars/postgres /opt/spark/jars/trino
+
+# Download and install MySQL JDBC driver
+RUN curl -L -o /opt/spark/jars/mysql-connector-j-${MYSQL_VERSION}.jar \
+    "https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/${MYSQL_VERSION}/mysql-connector-j-${MYSQL_VERSION}.jar" 
+
+# Download and install PostgreSQL JDBC driver
+RUN curl -L -o /opt/spark/jars/postgresql-${POSTGRESQL_VERSION}.jar \
+    "https://jdbc.postgresql.org/download/postgresql-${POSTGRESQL_VERSION}.jar"
+
+# Download and install Trino JDBC driver
+RUN curl -L -o /opt/spark/jars/trino-jdbc-${TRINO_VERSION}.jar \
+    "https://repo1.maven.org/maven2/io/trino/trino-jdbc/${TRINO_VERSION}/trino-jdbc-${TRINO_VERSION}.jar"
+
+
+# Download and install required Hadoop AWS and AWS SDK JARs
+# Use compatible versions: Hadoop 3.3.x for Spark 3.5.x
+RUN curl -L -o /opt/spark/jars/hadoop-aws-3.3.4.jar \
+    https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar
+
+RUN curl -L -o /opt/spark/jars/aws-java-sdk-bundle-1.12.262.jar \
+    https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar
+
+
+ENV DAGSTER_HOME=/opt/dagster
+ENV DAGSTER_DIR=/var/lib/adventureworks/dagster
+
+RUN mkdir -p ${DAGSTER_HOME} ${DAGSTER_DIR} 
+
+COPY ./requirements.txt /requirements.txt
+
+RUN pip3 install -r /requirements.txt
+
+EXPOSE 3070
