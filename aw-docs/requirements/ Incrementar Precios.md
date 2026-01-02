@@ -54,6 +54,3 @@ Incrementar los precios puede generar un mayor ingreso por unidad vendida, contr
 
 3. **Tendencia Histórica de Ventas vs. Precios** (Gráfico de Líneas Doble)
    - Evolución de precios y volumen de ventas en el tiempo
-
-4. **Simulador de Impacto** (Dashboard Interactivo)
-   - Proyección de ingresos totales ante diferentes escenarios de aumento de precios
