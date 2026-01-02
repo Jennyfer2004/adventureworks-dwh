@@ -4,7 +4,7 @@ with customer as (
 
 person as (
     select * from {{ source('silver', 'person') }}
-),
+), 
 
 store as (
     select * from {{ source('silver', 'store') }}
