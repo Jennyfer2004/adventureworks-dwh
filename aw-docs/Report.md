@@ -48,7 +48,7 @@ Ajustar los precios de manera incorrecta puede dañar la relación con los clien
          Índice Alto (>80): Productos "estrella". Son candidatos a un aumento de precio, pero requiere un análisis de sensibilidad.
          Índice Bajo (<20): Productos "problemáticos". Si su demanda no es sensible al precio, son candidatos perfectos para un aumento que los empuje hacia la rentabilidad.
          
-          ![](./images/Metabase-Profitability%20and%20Price-1_1_2026,%2020_03_47.png)
+          ![grafico](./images/Metabase-Profitability%20and%20Price-1_1_2026,%2020_03_47.png)
 
 
 3.2. Gráfico de Rentabilidad vs. Precio de Venta 
